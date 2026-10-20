@@ -1,0 +1,15 @@
+plugins {
+    id 'java-library'
+}
+
+description = 'CDC / changefeed integration for CockroachDB — changefeed SQL builder, envelope model, webhook handler + manager.'
+
+dependencies {
+    api project(':core')
+
+    // Jackson is confined to this module for changefeed envelope (de)serialization.
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.22.4'
+
+    // Live changefeed manager tests need a JDBC driver + DataSource.
+    testImplementation "org.postgresql:postgresql:${rootProject.ext.postgresqlVersion}"
+}

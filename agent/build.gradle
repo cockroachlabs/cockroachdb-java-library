@@ -1,0 +1,16 @@
+plugins {
+    id 'java-library'
+}
+
+description = 'Agent / MCP surface exposing CockroachDB operations as agent-callable tools.'
+
+dependencies {
+    api project(':core')
+    // JSON schema generation + tool argument/result marshalling (agent module only).
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.22.4'
+}
+
+// Preserve method parameter names so generated tool schemas use real argument names.
+tasks.withType(JavaCompile).configureEach {
+    options.compilerArgs << '-parameters'
+}

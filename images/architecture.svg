@@ -1,0 +1,153 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 660" font-family="'Segoe UI', system-ui, -apple-system, sans-serif">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f172a"/>
+      <stop offset="100%" style="stop-color:#1e293b"/>
+    </linearGradient>
+    <linearGradient id="coreGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#6366f1"/>
+      <stop offset="100%" style="stop-color:#4f46e5"/>
+    </linearGradient>
+    <linearGradient id="entryGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#06b6d4"/>
+      <stop offset="100%" style="stop-color:#0891b2"/>
+    </linearGradient>
+    <linearGradient id="continuumGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#a855f7"/>
+      <stop offset="100%" style="stop-color:#7c3aed"/>
+    </linearGradient>
+    <linearGradient id="agentGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#10b981"/>
+      <stop offset="100%" style="stop-color:#059669"/>
+    </linearGradient>
+    <linearGradient id="stubGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#64748b"/>
+      <stop offset="100%" style="stop-color:#475569"/>
+    </linearGradient>
+    <linearGradient id="appGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#f43f5e"/>
+      <stop offset="100%" style="stop-color:#e11d48"/>
+    </linearGradient>
+    <linearGradient id="dbGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#22c55e"/>
+      <stop offset="100%" style="stop-color:#16a34a"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-opacity="0.3"/>
+    </filter>
+    <marker id="arrowDown" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#94a3b8"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="660" rx="12" fill="url(#bgGrad)"/>
+
+  <!-- Title -->
+  <text x="450" y="38" text-anchor="middle" fill="#f1f5f9" font-size="20" font-weight="700">cockroachdb-java-library Architecture</text>
+  <text x="450" y="58" text-anchor="middle" fill="#94a3b8" font-size="12">Annotation-driven | Dynamic Proxy | Zero-dependency core</text>
+
+  <!-- YOUR APPLICATION layer -->
+  <rect x="30" y="75" width="840" height="50" rx="8" fill="url(#appGrad)" opacity="0.9" filter="url(#shadow)"/>
+  <text x="450" y="105" text-anchor="middle" fill="white" font-size="15" font-weight="600">Your Application</text>
+
+  <!-- Arrow down from app -->
+  <line x1="450" y1="125" x2="450" y2="145" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrowDown)"/>
+
+  <!-- ENTRY ROW: annotations + facade -->
+  <text x="44" y="162" fill="#94a3b8" font-size="11" font-weight="600" letter-spacing="1.5">ENTRY POINTS</text>
+
+  <rect x="30" y="170" width="405" height="90" rx="8" fill="url(#entryGrad)" filter="url(#shadow)"/>
+  <text x="232" y="195" text-anchor="middle" fill="white" font-size="14" font-weight="700">Annotations</text>
+  <line x1="50" y1="204" x2="415" y2="204" stroke="#cffafe" stroke-opacity="0.3"/>
+  <text x="232" y="222" text-anchor="middle" fill="#e0f2fe" font-size="10">@CockroachDB · @FollowerRead</text>
+  <text x="232" y="238" text-anchor="middle" fill="#e0f2fe" font-size="10">@VirtualCluster · @Workload · @AgentTool</text>
+  <text x="232" y="252" text-anchor="middle" fill="#cffafe" font-size="9">applied by the dynamic-proxy engine</text>
+
+  <rect x="465" y="170" width="405" height="90" rx="8" fill="url(#entryGrad)" filter="url(#shadow)"/>
+  <text x="667" y="195" text-anchor="middle" fill="white" font-size="14" font-weight="700">Crdb facade</text>
+  <line x1="485" y1="204" x2="850" y2="204" stroke="#cffafe" stroke-opacity="0.3"/>
+  <text x="667" y="222" text-anchor="middle" fill="#e0f2fe" font-size="10">Crdb.tx · Crdb.vcluster</text>
+  <text x="667" y="238" text-anchor="middle" fill="#e0f2fe" font-size="10">Crdb.aegis · Crdb.storage</text>
+  <text x="667" y="252" text-anchor="middle" fill="#cffafe" font-size="9">programmatic, no proxy</text>
+
+  <!-- Arrows down from entry to core -->
+  <line x1="232" y1="260" x2="232" y2="290" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrowDown)"/>
+  <line x1="667" y1="260" x2="667" y2="290" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrowDown)"/>
+
+  <!-- CORE MODULE -->
+  <text x="44" y="305" fill="#94a3b8" font-size="11" font-weight="600" letter-spacing="1.5">CORE</text>
+  <rect x="30" y="312" width="840" height="130" rx="10" fill="url(#coreGrad)" filter="url(#shadow)"/>
+  <text x="450" y="338" text-anchor="middle" fill="white" font-size="16" font-weight="700">core</text>
+  <text x="450" y="355" text-anchor="middle" fill="#c7d2fe" font-size="11">Driver-agnostic engine | JDBC / DataSource | Zero external dependencies</text>
+
+  <!-- Core feature boxes (6) -->
+  <rect x="50" y="372" width="125" height="55" rx="6" fill="rgba(255,255,255,0.12)"/>
+  <text x="112" y="393" text-anchor="middle" fill="white" font-size="11" font-weight="600">Adaptive Retry</text>
+  <text x="112" y="409" text-anchor="middle" fill="#c7d2fe" font-size="9">Backoff + Jitter</text>
+
+  <rect x="185" y="372" width="125" height="55" rx="6" fill="rgba(255,255,255,0.12)"/>
+  <text x="247" y="393" text-anchor="middle" fill="white" font-size="11" font-weight="600">Anomalies</text>
+  <text x="247" y="409" text-anchor="middle" fill="#c7d2fe" font-size="9">sealed + classifier</text>
+
+  <rect x="320" y="372" width="125" height="55" rx="6" fill="rgba(255,255,255,0.12)"/>
+  <text x="382" y="393" text-anchor="middle" fill="white" font-size="11" font-weight="600">Circuit Breaker</text>
+  <text x="382" y="409" text-anchor="middle" fill="#c7d2fe" font-size="9">fast-fail</text>
+
+  <rect x="455" y="372" width="125" height="55" rx="6" fill="rgba(255,255,255,0.12)"/>
+  <text x="517" y="393" text-anchor="middle" fill="white" font-size="11" font-weight="600">Tx Template</text>
+  <text x="517" y="409" text-anchor="middle" fill="#c7d2fe" font-size="9">Crdb.tx(ds, ...)</text>
+
+  <rect x="590" y="372" width="125" height="55" rx="6" fill="rgba(255,255,255,0.12)"/>
+  <text x="652" y="393" text-anchor="middle" fill="white" font-size="11" font-weight="600">Proxy Engine</text>
+  <text x="652" y="409" text-anchor="middle" fill="#c7d2fe" font-size="9">annotation AOP</text>
+
+  <rect x="725" y="372" width="125" height="55" rx="6" fill="rgba(255,255,255,0.12)"/>
+  <text x="787" y="393" text-anchor="middle" fill="white" font-size="11" font-weight="600">Context + Events</text>
+  <text x="787" y="409" text-anchor="middle" fill="#c7d2fe" font-size="9">ScopedValue · hooks</text>
+
+  <!-- Arrow down from core to modules -->
+  <line x1="450" y1="442" x2="450" y2="462" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrowDown)"/>
+
+  <!-- MODULES ROW -->
+  <text x="44" y="479" fill="#94a3b8" font-size="11" font-weight="600" letter-spacing="1.5">MODULES</text>
+
+  <!-- continuum (implemented) -->
+  <rect x="30" y="486" width="270" height="78" rx="8" fill="url(#continuumGrad)" filter="url(#shadow)"/>
+  <text x="165" y="510" text-anchor="middle" fill="white" font-size="14" font-weight="700">continuum</text>
+  <text x="165" y="528" text-anchor="middle" fill="#f3e8ff" font-size="10">Cloud · vCluster · metric export</text>
+  <text x="165" y="543" text-anchor="middle" fill="#f3e8ff" font-size="10">Plenum · Aegis · MCP client</text>
+  <text x="165" y="557" text-anchor="middle" fill="#e9d5ff" font-size="9">implemented</text>
+
+  <!-- agent (implemented) -->
+  <rect x="315" y="486" width="200" height="78" rx="8" fill="url(#agentGrad)" filter="url(#shadow)"/>
+  <text x="415" y="510" text-anchor="middle" fill="white" font-size="14" font-weight="700">agent</text>
+  <text x="415" y="528" text-anchor="middle" fill="#d1fae5" font-size="10">Agent / MCP tool surface</text>
+  <text x="415" y="543" text-anchor="middle" fill="#d1fae5" font-size="10">consumes @AgentTool</text>
+  <text x="415" y="557" text-anchor="middle" fill="#a7f3d0" font-size="9">implemented</text>
+
+  <!-- stubs (P4) -->
+  <rect x="530" y="486" width="340" height="78" rx="8" fill="url(#stubGrad)" filter="url(#shadow)"/>
+  <text x="700" y="510" text-anchor="middle" fill="white" font-size="14" font-weight="700">cdc · metrics · ai · testing</text>
+  <text x="700" y="528" text-anchor="middle" fill="#e2e8f0" font-size="10">Changefeed webhooks · Micrometer/OTel</text>
+  <text x="700" y="543" text-anchor="middle" fill="#e2e8f0" font-size="10">pgvector/semantic · Testcontainers harness</text>
+  <text x="700" y="557" text-anchor="middle" fill="#cbd5e1" font-size="9">stub (P4)</text>
+
+  <!-- Arrow down from modules to CockroachDB -->
+  <line x1="450" y1="564" x2="450" y2="584" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrowDown)"/>
+
+  <!-- CockroachDB -->
+  <rect x="200" y="594" width="500" height="50" rx="10" fill="url(#dbGrad)" filter="url(#shadow)"/>
+  <text x="450" y="618" text-anchor="middle" fill="white" font-size="15" font-weight="700">CockroachDB</text>
+  <text x="450" y="634" text-anchor="middle" fill="#dcfce7" font-size="10">Serializable | Multi-Region | Follower Reads | Continuum (Cloud · vCluster · Aegis)</text>
+
+  <!-- Legend -->
+  <rect x="30" y="600" width="12" height="12" rx="3" fill="url(#coreGrad)"/>
+  <text x="48" y="610" fill="#94a3b8" font-size="10">Core</text>
+  <rect x="30" y="620" width="12" height="12" rx="3" fill="url(#continuumGrad)"/>
+  <text x="48" y="630" fill="#94a3b8" font-size="10">Implemented</text>
+  <rect x="720" y="600" width="12" height="12" rx="3" fill="url(#stubGrad)"/>
+  <text x="738" y="610" fill="#94a3b8" font-size="10">Stub (P4)</text>
+  <rect x="720" y="620" width="12" height="12" rx="3" fill="url(#entryGrad)"/>
+  <text x="738" y="630" fill="#94a3b8" font-size="10">Entry points</text>
+</svg>

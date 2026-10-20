@@ -1,0 +1,9 @@
+rootProject.name = 'cockroachdb-java-library'
+
+include 'core'
+include 'cdc'
+include 'metrics'
+include 'ai'
+include 'continuum'
+include 'agent'
+include 'testing'

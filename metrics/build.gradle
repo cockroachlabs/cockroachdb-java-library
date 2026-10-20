@@ -1,0 +1,19 @@
+plugins {
+    id 'java-library'
+}
+
+description = 'Metrics / OpenTelemetry instrumentation for CockroachDB operations — wires core observe events to a MetricsRecorder.'
+
+dependencies {
+    api project(':core')
+
+    // OpenTelemetry is confined to this module so the core stays dependency-free.
+    // The Meter appears in OtelMetricsRecorder's public constructor, so it is an
+    // API dependency of this module.
+    api 'io.opentelemetry:opentelemetry-api:1.67.0'
+
+    // Live "metrics counted after real retries" IT uses the core transaction
+    // template against a running node, driven by the testing module's helpers.
+    testImplementation project(':testing')
+    testImplementation "org.postgresql:postgresql:${rootProject.ext.postgresqlVersion}"
+}

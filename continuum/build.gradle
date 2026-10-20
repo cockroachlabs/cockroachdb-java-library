@@ -1,0 +1,16 @@
+plugins {
+    id 'java-library'
+}
+
+description = 'Cockroach Continuum surfaces — Plenum storage insights, vCluster tagging, Aegis client + exhaust.'
+
+dependencies {
+    api project(':core')
+
+    // Continuum Cloud API client parses/serializes JSON. The JDK has no JSON
+    // facility; core stays zero-dep, so the dependency lives on this surface module.
+    implementation "com.fasterxml.jackson.core:jackson-databind:${rootProject.ext.jacksonVersion}"
+
+    // Live integration tests need a JDBC driver + DataSource.
+    testImplementation "org.postgresql:postgresql:${rootProject.ext.postgresqlVersion}"
+}

@@ -1,0 +1,17 @@
+plugins {
+    id 'java-library'
+}
+
+description = 'Testing utilities — Testcontainers CockroachDB harness, concurrency runner, and retry simulator.'
+
+dependencies {
+    api project(':core')
+
+    // Testcontainers is an API dependency so consumers can drive the container
+    // harness from their own tests. It compiles without a running Docker daemon;
+    // Docker is only required when a container is actually started at test runtime.
+    api 'org.testcontainers:cockroachdb:1.21.4'
+
+    // A JDBC driver + DataSource for the harness and self-tests.
+    api "org.postgresql:postgresql:${rootProject.ext.postgresqlVersion}"
+}
