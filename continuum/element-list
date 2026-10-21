@@ -1,0 +1,4 @@
+com.cockroachlabs.crdb.continuum.aegis
+com.cockroachlabs.crdb.continuum.cloud
+com.cockroachlabs.crdb.continuum.mcp
+com.cockroachlabs.crdb.continuum.plenum

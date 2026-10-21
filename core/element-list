@@ -1,0 +1,12 @@
+com.cockroachlabs.crdb
+com.cockroachlabs.crdb.annotations
+com.cockroachlabs.crdb.anomaly
+com.cockroachlabs.crdb.circuit
+com.cockroachlabs.crdb.config
+com.cockroachlabs.crdb.context
+com.cockroachlabs.crdb.observe
+com.cockroachlabs.crdb.proxy
+com.cockroachlabs.crdb.retry
+com.cockroachlabs.crdb.spi
+com.cockroachlabs.crdb.tx
+com.cockroachlabs.crdb.vcluster
