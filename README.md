@@ -22,6 +22,42 @@ Built for **Java 25** (uses `ScopedValue`, sealed types, records, pattern-matchi
 
 ![Architecture](images/architecture.svg)
 
+## Install
+
+Modules are served from this repository's **GitHub Pages Maven repository** — no token required. Each module is published as `com.cockroachlabs:cockroachdb-java-library-<module>` (modules: `core`, `continuum`, `agent`, `cdc`, `metrics`, `ai`, `testing`).
+
+### Maven
+
+```xml
+<repositories>
+  <repository>
+    <id>cockroachlabs</id>
+    <url>https://cockroachlabs.github.io/cockroachdb-java-library/maven/</url>
+  </repository>
+</repositories>
+
+<dependency>
+  <groupId>com.cockroachlabs</groupId>
+  <artifactId>cockroachdb-java-library-core</artifactId>
+  <version>0.1.1</version>
+</dependency>
+```
+
+### Gradle
+
+```groovy
+repositories {
+    mavenCentral()
+    maven { url 'https://cockroachlabs.github.io/cockroachdb-java-library/maven/' }
+}
+
+dependencies {
+    implementation 'com.cockroachlabs:cockroachdb-java-library-core:0.1.1'
+}
+```
+
+API reference: https://cockroachlabs.github.io/cockroachdb-java-library/
+
 ## Quick start
 
 Annotate a method, wrap the object with `Crdb.enhance(...)`, and stop writing
