@@ -1,0 +1,118 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.cockroachlabs",
+    "module": "cockroachdb-java-library-ai",
+    "version": "0.1.1",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.8.0"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 25,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "com.cockroachlabs",
+          "module": "cockroachdb-java-library-core",
+          "version": {
+            "requires": "0.1.1"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "cockroachdb-java-library-ai-0.1.1.jar",
+          "url": "cockroachdb-java-library-ai-0.1.1.jar",
+          "size": 27597,
+          "sha512": "c96acf564625c74c8fca2fc468ca17204ce531213cbe5ae2ce86e77ff129351691b6664588e3de1032a13d3a2e0f59364911fa769723a079dce364ff793fdc51",
+          "sha256": "7dbd1af56edd705a3b0f4100f0486c31abf41c9170aa4e77345b4be0505ba867",
+          "sha1": "9ce5e5fef6da254311396bd0a7bef896b5f1df4c",
+          "md5": "344aa04487402f9abc8dc1e0a22c1129"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 25,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "com.cockroachlabs",
+          "module": "cockroachdb-java-library-core",
+          "version": {
+            "requires": "0.1.1"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "cockroachdb-java-library-ai-0.1.1.jar",
+          "url": "cockroachdb-java-library-ai-0.1.1.jar",
+          "size": 27597,
+          "sha512": "c96acf564625c74c8fca2fc468ca17204ce531213cbe5ae2ce86e77ff129351691b6664588e3de1032a13d3a2e0f59364911fa769723a079dce364ff793fdc51",
+          "sha256": "7dbd1af56edd705a3b0f4100f0486c31abf41c9170aa4e77345b4be0505ba867",
+          "sha1": "9ce5e5fef6da254311396bd0a7bef896b5f1df4c",
+          "md5": "344aa04487402f9abc8dc1e0a22c1129"
+        }
+      ]
+    },
+    {
+      "name": "javadocElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "javadoc",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "cockroachdb-java-library-ai-0.1.1-javadoc.jar",
+          "url": "cockroachdb-java-library-ai-0.1.1-javadoc.jar",
+          "size": 4202807,
+          "sha512": "9ab38904c9d4439544f33354d448ef518a34fa99cb4e92594aa449906cf829334625e4b3e07dc3e804e52dfa2c6e0326f6b2e6cfc75b2ef85b0fa8b6650a4b7b",
+          "sha256": "dcbbcd1cf0860de7ae543bec9d5ca6b13d1e79a0957cbfbcdd51b1af98500f58",
+          "sha1": "58d7ebb07c8f7c16dd4dec7c02be0715562502a9",
+          "md5": "2f764ece4a16424b9e92e173271e63b1"
+        }
+      ]
+    },
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "cockroachdb-java-library-ai-0.1.1-sources.jar",
+          "url": "cockroachdb-java-library-ai-0.1.1-sources.jar",
+          "size": 15819,
+          "sha512": "c95f821bfc20c396e6d65fc9ed64e91fcbafd3033a459b79050681fed458c82c3cc296ac5f52386eed4416eab61a0de3be12cdec94b26e8b5c88b08bba2e6c97",
+          "sha256": "f4407dbd854d63a581d3b5f2067a4ba44a465e83085c70cb31eb8b1e764431e1",
+          "sha1": "be4c7c60470e2006b8a6684d670a1de62882ce6d",
+          "md5": "683a473cc7af98f2236c07e7f013b0e9"
+        }
+      ]
+    }
+  ]
+}

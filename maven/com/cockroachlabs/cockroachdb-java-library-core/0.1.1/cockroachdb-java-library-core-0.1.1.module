@@ -1,0 +1,116 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.cockroachlabs",
+    "module": "cockroachdb-java-library-core",
+    "version": "0.1.1",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.8.0"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 25,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api"
+      },
+      "files": [
+        {
+          "name": "cockroachdb-java-library-core-0.1.1.jar",
+          "url": "cockroachdb-java-library-core-0.1.1.jar",
+          "size": 56682,
+          "sha512": "1a9b607c076c9b3c8e0461a2bcb74b66c41589d26ba46fb980f5249d21e64afcd84dce429ce7afea72da9f1b82f227bd6573051538c956da05163bfd86ee0e7b",
+          "sha256": "6e6c1e761b0180449e579698bf422070e93b31a1fd08a917ce02229b1f4ce7df",
+          "sha1": "4f01fcaaec8b4ffede67959532a33427b03c7230",
+          "md5": "13d81d68bcb9f6180a21cb67093dce38"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 25,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "org.postgresql",
+          "module": "postgresql",
+          "version": {
+            "requires": "42.7.14"
+          }
+        },
+        {
+          "group": "net.bytebuddy",
+          "module": "byte-buddy",
+          "version": {
+            "requires": "1.18.15"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "cockroachdb-java-library-core-0.1.1.jar",
+          "url": "cockroachdb-java-library-core-0.1.1.jar",
+          "size": 56682,
+          "sha512": "1a9b607c076c9b3c8e0461a2bcb74b66c41589d26ba46fb980f5249d21e64afcd84dce429ce7afea72da9f1b82f227bd6573051538c956da05163bfd86ee0e7b",
+          "sha256": "6e6c1e761b0180449e579698bf422070e93b31a1fd08a917ce02229b1f4ce7df",
+          "sha1": "4f01fcaaec8b4ffede67959532a33427b03c7230",
+          "md5": "13d81d68bcb9f6180a21cb67093dce38"
+        }
+      ]
+    },
+    {
+      "name": "javadocElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "javadoc",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "cockroachdb-java-library-core-0.1.1-javadoc.jar",
+          "url": "cockroachdb-java-library-core-0.1.1-javadoc.jar",
+          "size": 4358040,
+          "sha512": "2dfc9795546ee1664671fdfa867376bf95ea2538e53223b2e9fa573cc6d19b50e6e717e6508ab898c25a7a4e46d223edeb7f9213ceb22be04774d2450b676353",
+          "sha256": "412bfe9ab628d647f6196fa19afd64fa08992acc4c356722a2c5e13b0a9079fa",
+          "sha1": "c9ceba34a0acf77d4072403c6c6050fb86b72852",
+          "md5": "a4c8debfa083c2e075af2c2502065317"
+        }
+      ]
+    },
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "cockroachdb-java-library-core-0.1.1-sources.jar",
+          "url": "cockroachdb-java-library-core-0.1.1-sources.jar",
+          "size": 40476,
+          "sha512": "2bfa44867e26ac7341d2d578b4e4134da8de81ca96102adbe628cfca37164ee412deaa7b8fbd51ecdca2790a4f39b4afee2b2e5d511f30dd68e1fa6eb1578395",
+          "sha256": "5ec6e6ba0d8fc6a253348e588351b2d13beede57b06b038117607b0de11e785b",
+          "sha1": "b6544c6067f2826d4603ab60fab7e486ba118050",
+          "md5": "eb6bf6c74f6634dd036d03e99dc006d0"
+        }
+      ]
+    }
+  ]
+}

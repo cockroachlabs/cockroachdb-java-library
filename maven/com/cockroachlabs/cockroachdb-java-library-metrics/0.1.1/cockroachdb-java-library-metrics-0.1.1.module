@@ -1,0 +1,132 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.cockroachlabs",
+    "module": "cockroachdb-java-library-metrics",
+    "version": "0.1.1",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.8.0"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 25,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "com.cockroachlabs",
+          "module": "cockroachdb-java-library-core",
+          "version": {
+            "requires": "0.1.1"
+          }
+        },
+        {
+          "group": "io.opentelemetry",
+          "module": "opentelemetry-api",
+          "version": {
+            "requires": "1.67.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "cockroachdb-java-library-metrics-0.1.1.jar",
+          "url": "cockroachdb-java-library-metrics-0.1.1.jar",
+          "size": 8501,
+          "sha512": "7e16e695c9ef19fd494b9d22f35ab19843c14c28afbd4c68381f662f28a42dfe2caa12723b6095323fa064f341b670287ee5a13d0b3768efd24da539f847e2d3",
+          "sha256": "ed304df767024998d7d70a36158e43cdead7274aa5eb766b2ecbfee1ed99c4b7",
+          "sha1": "5a467dfdbdcc320f1b1e428f73917178e226ca4c",
+          "md5": "4fd19c3fbb738b0dc5917cb352936b01"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 25,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "com.cockroachlabs",
+          "module": "cockroachdb-java-library-core",
+          "version": {
+            "requires": "0.1.1"
+          }
+        },
+        {
+          "group": "io.opentelemetry",
+          "module": "opentelemetry-api",
+          "version": {
+            "requires": "1.67.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "cockroachdb-java-library-metrics-0.1.1.jar",
+          "url": "cockroachdb-java-library-metrics-0.1.1.jar",
+          "size": 8501,
+          "sha512": "7e16e695c9ef19fd494b9d22f35ab19843c14c28afbd4c68381f662f28a42dfe2caa12723b6095323fa064f341b670287ee5a13d0b3768efd24da539f847e2d3",
+          "sha256": "ed304df767024998d7d70a36158e43cdead7274aa5eb766b2ecbfee1ed99c4b7",
+          "sha1": "5a467dfdbdcc320f1b1e428f73917178e226ca4c",
+          "md5": "4fd19c3fbb738b0dc5917cb352936b01"
+        }
+      ]
+    },
+    {
+      "name": "javadocElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "javadoc",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "cockroachdb-java-library-metrics-0.1.1-javadoc.jar",
+          "url": "cockroachdb-java-library-metrics-0.1.1-javadoc.jar",
+          "size": 4169167,
+          "sha512": "fb5a26042acae296bcd5066b9543c6ce4d7a1d46b04a3056f319c8d7aa65957836bb62165a28f0f7c3aa7f8eb2ba2fc0224bc9f3e8cbfb428d831865dfb72d96",
+          "sha256": "b4155f20e0d74db912956ca6387c832171dd9f3d73a7946fbbf70f88967efebf",
+          "sha1": "09a818cbc68b6ef5d5f3513ce895f29167cd3456",
+          "md5": "72691ae37b198bac42f992fa3ebb1cb0"
+        }
+      ]
+    },
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "cockroachdb-java-library-metrics-0.1.1-sources.jar",
+          "url": "cockroachdb-java-library-metrics-0.1.1-sources.jar",
+          "size": 6981,
+          "sha512": "f76415760750a2b443b3f9aac2326744b1959686d8aea48e7c9788795c4f04aa9f8df0a439b9f39393a35384384983c6657bc229206afe84106d9637bdba0729",
+          "sha256": "4b36ee03ac737ffbecd0bed139a2f466b1f87195910a7dd71a1e9822d29db1ba",
+          "sha1": "d3d330059b517a8729c01a388cc816f7bd0a34e5",
+          "md5": "aca3c5e9fd19503a66135c21b1615ffb"
+        }
+      ]
+    }
+  ]
+}

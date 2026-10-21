@@ -1,0 +1,146 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.cockroachlabs",
+    "module": "cockroachdb-java-library-testing",
+    "version": "0.1.1",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.8.0"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 25,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "com.cockroachlabs",
+          "module": "cockroachdb-java-library-core",
+          "version": {
+            "requires": "0.1.1"
+          }
+        },
+        {
+          "group": "org.testcontainers",
+          "module": "cockroachdb",
+          "version": {
+            "requires": "1.21.4"
+          }
+        },
+        {
+          "group": "org.postgresql",
+          "module": "postgresql",
+          "version": {
+            "requires": "42.7.14"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "cockroachdb-java-library-testing-0.1.1.jar",
+          "url": "cockroachdb-java-library-testing-0.1.1.jar",
+          "size": 11273,
+          "sha512": "e7abce39ede139b8b57d49536df486f5b4bee0d3670d10625ea2be337faff723d7bc183e85fe22ab1b070d0c10574a9200be3208a679615107205e5412782a08",
+          "sha256": "05eb4a0e6395b2643af85a7e587dda3f24457f2c2c55141b3c271952d4bb1b14",
+          "sha1": "d653ca3221a43ce881b1421436086f29cda4b9d6",
+          "md5": "004c15457bdf3f4845319d668485a987"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 25,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "com.cockroachlabs",
+          "module": "cockroachdb-java-library-core",
+          "version": {
+            "requires": "0.1.1"
+          }
+        },
+        {
+          "group": "org.testcontainers",
+          "module": "cockroachdb",
+          "version": {
+            "requires": "1.21.4"
+          }
+        },
+        {
+          "group": "org.postgresql",
+          "module": "postgresql",
+          "version": {
+            "requires": "42.7.14"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "cockroachdb-java-library-testing-0.1.1.jar",
+          "url": "cockroachdb-java-library-testing-0.1.1.jar",
+          "size": 11273,
+          "sha512": "e7abce39ede139b8b57d49536df486f5b4bee0d3670d10625ea2be337faff723d7bc183e85fe22ab1b070d0c10574a9200be3208a679615107205e5412782a08",
+          "sha256": "05eb4a0e6395b2643af85a7e587dda3f24457f2c2c55141b3c271952d4bb1b14",
+          "sha1": "d653ca3221a43ce881b1421436086f29cda4b9d6",
+          "md5": "004c15457bdf3f4845319d668485a987"
+        }
+      ]
+    },
+    {
+      "name": "javadocElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "javadoc",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "cockroachdb-java-library-testing-0.1.1-javadoc.jar",
+          "url": "cockroachdb-java-library-testing-0.1.1-javadoc.jar",
+          "size": 4175963,
+          "sha512": "2348c14506278e8d7b6e8b4eb6f99d91e85824aef30b41622ec5c685e2be66326609cf79f2f2db1158f94c46065883d460aa3543b67ac282494b95f422f46676",
+          "sha256": "50ea709d68959629ac2dd28da5423fe1ba57dffdecb6bf8d159f4f4dc63626e3",
+          "sha1": "0ec38cfab29c29250666ba15930fe6c916e299ad",
+          "md5": "7b09fbe088e042032ff1eb52da55b644"
+        }
+      ]
+    },
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "cockroachdb-java-library-testing-0.1.1-sources.jar",
+          "url": "cockroachdb-java-library-testing-0.1.1-sources.jar",
+          "size": 7736,
+          "sha512": "04da5029b343b0399b6e3789f0bf9e8c82af7c034d606a7035f3a921fcd8099fd11705727ff792601a051268f7ff1fb8f75a1d1727e28315f8935906aa6c0b61",
+          "sha256": "37d89c17ae645ff37bd5217d7c4e200efaf2e3946086f60af130abf920763c47",
+          "sha1": "54f45149bca1430710cefb567a8ea58e28131612",
+          "md5": "90d4e145df9719d3fc0f913270953a4d"
+        }
+      ]
+    }
+  ]
+}
