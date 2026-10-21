@@ -23,7 +23,7 @@
   .card{position:relative;display:flex;flex-direction:column;border:1px solid var(--line);border-radius:16px;background:var(--paper);padding:24px;transition:.18s}
   .card:hover{transform:translateY(-3px);border-color:var(--purple);box-shadow:0 18px 40px -24px rgba(80,36,130,.3)}
   .card-link{position:absolute;inset:0;border-radius:16px;z-index:1;font-size:0;color:transparent}
-  .card>*{position:relative;z-index:2;pointer-events:none}
+  .card>:not(.card-link){position:relative;z-index:2;pointer-events:none}
   .card .mod{align-self:flex-start;font-family:var(--cu-mono);font-size:11px;font-weight:600;letter-spacing:.6px;color:var(--purple-dark);border:1px solid var(--line);background:var(--cream);padding:5px 11px;border-radius:99px;margin-bottom:14px}
   .card h3{font-size:20px;font-weight:700;letter-spacing:-.02em;margin:0 0 6px}
   .card p{color:var(--mute);font-size:14px;line-height:1.5;flex:1;margin:0}
