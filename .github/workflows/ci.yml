@@ -26,9 +26,20 @@ jobs:
           java-version: '25'
           cache: gradle
 
-      - name: Build
-        # Live-DB integration tests (*IT) are gated on a reachable CockroachDB
-        # node via a JUnit assumption on CRDB_URL. No node is provisioned here,
-        # so those tests self-skip and the build stays green. To run them in CI,
-        # add a CockroachDB service and set CRDB_URL for this step.
+      - name: Start CockroachDB
+        run: |
+          docker run -d --name crdb -p 26257:26257 \
+            cockroachdb/cockroach:latest-v25.1 start-single-node --insecure
+          for i in $(seq 1 60); do
+            if docker exec crdb ./cockroach sql --insecure -e 'SELECT 1' >/dev/null 2>&1; then
+              echo "CockroachDB ready"; break
+            fi
+            sleep 2
+          done
+
+      - name: Build & test
+        # Live-DB integration tests (*IT) run against the CockroachDB node above
+        # via CRDB_URL; unit tests run regardless.
+        env:
+          CRDB_URL: jdbc:postgresql://localhost:26257/defaultdb?user=root&sslmode=disable
         run: ./gradlew build --no-daemon --stacktrace
