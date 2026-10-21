@@ -1,0 +1,63 @@
+name: Javadoc
+
+# Builds aggregated Javadoc for all modules and publishes it to GitHub Pages
+# at https://cockroachlabs.github.io/cockroachdb-java-library/ on every push to
+# main and on each published release.
+on:
+  push:
+    branches: [main]
+  release:
+    types: [published]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: javadoc-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  javadoc:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 25 (Temurin)
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '25'
+          cache: gradle
+
+      - name: Generate Javadoc for all modules
+        run: ./gradlew javadoc --no-daemon --stacktrace
+
+      - name: Assemble Pages site
+        run: |
+          set -euo pipefail
+          rm -rf _site && mkdir -p _site
+          {
+            echo '<!doctype html><html lang="en"><head><meta charset="utf-8">'
+            echo '<meta name="viewport" content="width=device-width,initial-scale=1">'
+            echo '<title>CockroachDB Java Library — API Docs</title>'
+            echo '<style>body{font-family:system-ui,sans-serif;max-width:48rem;margin:4rem auto;padding:0 1.5rem;line-height:1.6;color:#101913}a{color:#9059FF}h1{font-size:1.6rem}li{margin:.4rem 0}</style>'
+            echo '</head><body><h1>CockroachDB Java Library — API Docs</h1><p>Javadoc by module:</p><ul>'
+          } > _site/index.html
+          for dir in */build/docs/javadoc; do
+            module="${dir%%/*}"
+            if [ -d "$dir" ]; then
+              mkdir -p "_site/$module"
+              cp -r "$dir/." "_site/$module/"
+              echo "<li><a href=\"./$module/\">$module</a></li>" >> _site/index.html
+            fi
+          done
+          echo '</ul></body></html>' >> _site/index.html
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: _site
+          publish_branch: gh-pages

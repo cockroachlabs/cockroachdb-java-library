@@ -1,6 +1,5 @@
 plugins {
     id 'java-library'
-    id 'maven-publish'
 }
 
 description = 'CockroachDB pure-Java library — annotation-driven core (retry, circuit breaking, context, transactions, dynamic proxies).'
@@ -12,36 +11,5 @@ dependencies {
     implementation "net.bytebuddy:byte-buddy:${rootProject.ext.byteBuddyVersion}"
 }
 
-// Publishes this module to GitHub Packages as
-// com.cockroachlabs:cockroachdb-java-library-core (version from allprojects).
-// Mirrors the spring-boot-starter's publish config; credentials come from env.
-publishing {
-    publications {
-        maven(MavenPublication) {
-            groupId = 'com.cockroachlabs'
-            artifactId = 'cockroachdb-java-library-core'
-            from components.java
-            pom {
-                name = 'CockroachDB Java Library — Core'
-                description = project.description
-                url = 'https://github.com/felipeg48/cockroachdb-java-library'
-                licenses {
-                    license {
-                        name = 'The Apache License, Version 2.0'
-                        url = 'https://www.apache.org/licenses/LICENSE-2.0.txt'
-                    }
-                }
-            }
-        }
-    }
-    repositories {
-        maven {
-            name = 'GitHubPackages'
-            url = 'https://maven.pkg.github.com/felipeg48/cockroachdb-java-library'
-            credentials {
-                username = System.getenv('GITHUB_ACTOR') ?: 'felipeg48'
-                password = System.getenv('GITHUB_TOKEN')
-            }
-        }
-    }
-}
+// Maven publishing (GitHub Packages) is configured centrally in the root
+// build.gradle `subprojects` block for every module.
