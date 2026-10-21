@@ -76,6 +76,12 @@ subprojects {
                     password = System.getenv('GITHUB_TOKEN')
                 }
             }
+            // Anonymous static Maven repo published to GitHub Pages (no token to
+            // consume). The Javadoc/Pages workflow copies this into _site/maven.
+            maven {
+                name = 'Pages'
+                url = rootProject.layout.buildDirectory.dir('maven-repo')
+            }
         }
     }
 }
