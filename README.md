@@ -1,12 +1,16 @@
 # CockroachDB Java Library
 
+[![CI](https://github.com/cockroachlabs/cockroachdb-java-library/actions/workflows/ci.yml/badge.svg)](https://github.com/cockroachlabs/cockroachdb-java-library/actions/workflows/ci.yml)
+[![Release](https://img.shields.io/github/v/release/cockroachlabs/cockroachdb-java-library?sort=semver)](https://github.com/cockroachlabs/cockroachdb-java-library/releases)
+[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
+
 A **pure-Java**, framework-free library for CockroachDB. Its headline feature:
 custom annotations plus runtime dynamic proxies that make CockroachDB
 anomaly-handling boilerplate — the `try/catch` retry loops around serialization
 errors (SQLSTATE `40001`) — **disappear**.
 
 It is the framework-free sibling of the
-[`cockroachdb-spring-boot-starter`](../cockroachdb-spring-boot-starter), and part
+[`cockroachdb-spring-boot-starter`](https://github.com/cockroachlabs/cockroachdb-spring-boot-starter), and part
 of a family of CockroachDB client libraries (Go, Python, .NET, Ktor). Its
 roadmap tracks **Cockroach Continuum** (Plenum, vCluster, Aegis, and an
 Agent/MCP surface) — see [`docs/CONTINUUM_PLAN.md`](docs/CONTINUUM_PLAN.md).
