@@ -93,11 +93,11 @@
         {
           "name": "cockroachdb-java-library-cdc-0.1.2-javadoc.jar",
           "url": "cockroachdb-java-library-cdc-0.1.2-javadoc.jar",
-          "size": 4194756,
-          "sha512": "53d649621f168814addbd0f105c63adb9d5e12673d8c900777cf5d8f2bca04aed5e87382697df41aaf0ef1fb7d075e2d4077ea7e77028874c66360fea38db526",
-          "sha256": "59de6dce7ffe58127eb24cb9713d966dbd9cc44bc1c0385f2fe4c6f6062ad653",
-          "sha1": "ce8c381615d39386c5132f9bb2a1453fba70881b",
-          "md5": "9b1c16cb3be532c71ef45c1263866a8d"
+          "size": 4194746,
+          "sha512": "fbdbef615d928aa88486fb8a404879929b7cdc6f27914137a9ba6f2392f3c449aac182630b8b3a261ccd64f810ee52776853cf2e4ed06df7876c02dbefb4a303",
+          "sha256": "1297c2ed48e03cabe1350e513765aafc5ec920fbd5bed81a26037ec69d57f70d",
+          "sha1": "22914bd1def3637b82fd97e69471a190400aba21",
+          "md5": "983a6c7c44de3675be08ed1ea0a740db"
         }
       ]
     },

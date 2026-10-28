@@ -100,11 +100,11 @@
         {
           "name": "cockroachdb-java-library-metrics-0.1.2-javadoc.jar",
           "url": "cockroachdb-java-library-metrics-0.1.2-javadoc.jar",
-          "size": 4169177,
-          "sha512": "a316c4f6e5ce5770ed87d57b6ef44732f62b811ee7f99a66cd547f2e19b54ae324242f52a9d2e5243a7473474a75f7cef997b187af712f8bf31e0bade348f709",
-          "sha256": "815183d833014e12842290515de539ed40db31adfe444f89906ac1e5a1bed195",
-          "sha1": "cbc7cc30b056635cd125727e5ccd12714f766841",
-          "md5": "e60648dd77885e163a49391774c805bb"
+          "size": 4169167,
+          "sha512": "9e11ef966f1aedc35d8d2762fd87753d8a3a3d8756dca7000b715493c85e75fcf6d1e7e028f803429fcb4e6c2ddeb687ab3008d03176e3abfe3ff431c6ab6c73",
+          "sha256": "45a36e556d77c88c4039f08bd41d5475c6abffe38dead86f737c17831c137619",
+          "sha1": "27c4dd5de73a8bed2b44ef929c6c43f5eced5867",
+          "md5": "6ee6c5fefa34fbb908dfc2034367f05b"
         }
       ]
     },
