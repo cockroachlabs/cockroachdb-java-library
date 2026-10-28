@@ -1,0 +1,125 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.cockroachlabs",
+    "module": "cockroachdb-java-library-cdc",
+    "version": "0.1.2",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.8.0"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 25,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "com.cockroachlabs",
+          "module": "cockroachdb-java-library-core",
+          "version": {
+            "requires": "0.1.2"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "cockroachdb-java-library-cdc-0.1.2.jar",
+          "url": "cockroachdb-java-library-cdc-0.1.2.jar",
+          "size": 17944,
+          "sha512": "e0016039f56b4319b1cc7d46366de3567d9f5f2fe1cbb669bba6318deaa6ad0ea4d80f34afee2bebf58ce992ed53e52e72710e7d24f1678a7808250a01911ed1",
+          "sha256": "11fce110a886ca7a59b0d731655025d3261ac3cd31690c2e6cbd05f7a9cb1559",
+          "sha1": "f3cb667c88fff26547e25112d8a58c9984780737",
+          "md5": "e74f79c8677d73ddba988e1f42f8048b"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 25,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "com.fasterxml.jackson.core",
+          "module": "jackson-databind",
+          "version": {
+            "requires": "2.22.4"
+          }
+        },
+        {
+          "group": "com.cockroachlabs",
+          "module": "cockroachdb-java-library-core",
+          "version": {
+            "requires": "0.1.2"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "cockroachdb-java-library-cdc-0.1.2.jar",
+          "url": "cockroachdb-java-library-cdc-0.1.2.jar",
+          "size": 17944,
+          "sha512": "e0016039f56b4319b1cc7d46366de3567d9f5f2fe1cbb669bba6318deaa6ad0ea4d80f34afee2bebf58ce992ed53e52e72710e7d24f1678a7808250a01911ed1",
+          "sha256": "11fce110a886ca7a59b0d731655025d3261ac3cd31690c2e6cbd05f7a9cb1559",
+          "sha1": "f3cb667c88fff26547e25112d8a58c9984780737",
+          "md5": "e74f79c8677d73ddba988e1f42f8048b"
+        }
+      ]
+    },
+    {
+      "name": "javadocElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "javadoc",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "cockroachdb-java-library-cdc-0.1.2-javadoc.jar",
+          "url": "cockroachdb-java-library-cdc-0.1.2-javadoc.jar",
+          "size": 4194756,
+          "sha512": "53d649621f168814addbd0f105c63adb9d5e12673d8c900777cf5d8f2bca04aed5e87382697df41aaf0ef1fb7d075e2d4077ea7e77028874c66360fea38db526",
+          "sha256": "59de6dce7ffe58127eb24cb9713d966dbd9cc44bc1c0385f2fe4c6f6062ad653",
+          "sha1": "ce8c381615d39386c5132f9bb2a1453fba70881b",
+          "md5": "9b1c16cb3be532c71ef45c1263866a8d"
+        }
+      ]
+    },
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "cockroachdb-java-library-cdc-0.1.2-sources.jar",
+          "url": "cockroachdb-java-library-cdc-0.1.2-sources.jar",
+          "size": 11703,
+          "sha512": "500b020833e25773746fc4ea75ae608698649197cbf17eb65169ba07f0e2ad93b985abad1f0dcc1ade075deb696d6a9d4242b3df5d41cf2f2be82c0d445034b1",
+          "sha256": "50b3230bda11b4a8a54fdf193a196a1c62ef184033c94c2b2e6bcb3dc8fc4485",
+          "sha1": "acfdacd7bf7410d98d543f587f2eaacfdbd542ff",
+          "md5": "48bae4a054e7708f2efba3fd828a420a"
+        }
+      ]
+    }
+  ]
+}
