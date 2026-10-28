@@ -599,6 +599,10 @@ cluster.</div>
 <dd>
 <div class="block">Maps to QoS <code>critical</code>.</div>
 </dd>
+<dt><a href="com/cockroachlabs/crdb/annotations/FollowerRead.html#hoursAgo()" class="member-name-link">hoursAgo()</a> - Element in annotation interface com.cockroachlabs.crdb.annotations.<a href="com/cockroachlabs/crdb/annotations/FollowerRead.html" title="annotation interface in com.cockroachlabs.crdb.annotations">FollowerRead</a></dt>
+<dd>
+<div class="block">Hours of staleness.</div>
+</dd>
 </dl>
 <h2 class="title" id="I:I">I</h2>
 <dl class="index">
@@ -696,6 +700,10 @@ wins, otherwise this value is retained.</div>
 <dt><a href="com/cockroachlabs/crdb/anomaly/UnknownAnomaly.html#message()" class="member-name-link">message()</a> - Method in record class com.cockroachlabs.crdb.anomaly.<a href="com/cockroachlabs/crdb/anomaly/UnknownAnomaly.html" title="class in com.cockroachlabs.crdb.anomaly">UnknownAnomaly</a></dt>
 <dd>
 <div class="block">Returns the value of the <code>message</code> record component.</div>
+</dd>
+<dt><a href="com/cockroachlabs/crdb/annotations/FollowerRead.html#minutesAgo()" class="member-name-link">minutesAgo()</a> - Element in annotation interface com.cockroachlabs.crdb.annotations.<a href="com/cockroachlabs/crdb/annotations/FollowerRead.html" title="annotation interface in com.cockroachlabs.crdb.annotations">FollowerRead</a></dt>
+<dd>
+<div class="block">Minutes of staleness.</div>
 </dd>
 <dt><a href="com/cockroachlabs/crdb/retry/RetryPolicy.html#multiplier()" class="member-name-link">multiplier()</a> - Method in record class com.cockroachlabs.crdb.retry.<a href="com/cockroachlabs/crdb/retry/RetryPolicy.html" title="class in com.cockroachlabs.crdb.retry">RetryPolicy</a></dt>
 <dd>
@@ -875,6 +883,10 @@ this priority: one of <code>critical</code>, <code>regular</code>, <code>backgro
 <dd>
 <div class="block">Returns the value of the <a href="./com/cockroachlabs/crdb/spi/TableStorage.html#param-schema"><code>schema</code></a> record component.</div>
 </dd>
+<dt><a href="com/cockroachlabs/crdb/annotations/FollowerRead.html#secondsAgo()" class="member-name-link">secondsAgo()</a> - Element in annotation interface com.cockroachlabs.crdb.annotations.<a href="com/cockroachlabs/crdb/annotations/FollowerRead.html" title="annotation interface in com.cockroachlabs.crdb.annotations">FollowerRead</a></dt>
+<dd>
+<div class="block">Seconds of staleness.</div>
+</dd>
 <dt><a href="com/cockroachlabs/crdb/tx/Isolation.html#SERIALIZABLE" class="member-name-link">SERIALIZABLE</a> - Enum constant in enum class com.cockroachlabs.crdb.tx.<a href="com/cockroachlabs/crdb/tx/Isolation.html" title="enum class in com.cockroachlabs.crdb.tx">Isolation</a></dt>
 <dd>
 <div class="block">Strongest isolation; CockroachDB's default.</div>
@@ -928,7 +940,7 @@ this priority: one of <code>critical</code>, <code>regular</code>, <code>backgro
 </dd>
 <dt><a href="com/cockroachlabs/crdb/annotations/FollowerRead.html#staleness()" class="member-name-link">staleness()</a> - Element in annotation interface com.cockroachlabs.crdb.annotations.<a href="com/cockroachlabs/crdb/annotations/FollowerRead.html" title="annotation interface in com.cockroachlabs.crdb.annotations">FollowerRead</a></dt>
 <dd>
-<div class="block">Staleness expression.</div>
+<div class="block">Raw staleness expression, inlined after <code>AS OF SYSTEM TIME</code>.</div>
 </dd>
 <dt><a href="com/cockroachlabs/crdb/circuit/CircuitBreaker.html#state()" class="member-name-link">state()</a> - Method in class com.cockroachlabs.crdb.circuit.<a href="com/cockroachlabs/crdb/circuit/CircuitBreaker.html" title="class in com.cockroachlabs.crdb.circuit">CircuitBreaker</a></dt>
 <dd>

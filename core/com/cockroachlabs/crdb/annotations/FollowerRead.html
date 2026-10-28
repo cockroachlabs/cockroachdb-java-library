@@ -57,6 +57,9 @@ loadScripts(document, 'script');</script>
 <li><a href="#annotation-interface-element-detail" tabindex="0">Element Details</a>
 <ol class="toc-list">
 <li><a href="#staleness()" tabindex="0">staleness</a></li>
+<li><a href="#hoursAgo()" tabindex="0">hoursAgo</a></li>
+<li><a href="#minutesAgo()" tabindex="0">minutesAgo</a></li>
+<li><a href="#secondsAgo()" tabindex="0">secondsAgo</a></li>
 </ol>
 </li>
 </ol>
@@ -76,7 +79,16 @@ loadScripts(document, 'script');</script>
 <div class="block">Marks the annotated method as a follower-read call. The proxy engine sets the
 follower-read staleness in <a href="../context/CrdbContext.html" title="class in com.cockroachlabs.crdb.context"><code>CrdbContext</code></a>,
 so reads run with <code>AS OF SYSTEM TIME</code> against the nearest replica for
-low-latency, slightly-stale results.</div>
+low-latency, slightly-stale results. A plain <code>@FollowerRead</code> always does
+a follower read; there is no fallback to a current read.
+
+<p>With nothing set (the default), it reads at <code>follower_read_timestamp()</code>,
+the most recent time any replica can serve (about 4.2s ago). Otherwise the
+<code>hoursAgo</code>/<code>minutesAgo</code>/<code>secondsAgo</code> parts add up, so
+<code>@FollowerRead(hoursAgo = 1, minutesAgo = 30)</code> reads as of 1h30m ago
+(<code>AS OF SYSTEM TIME '-5400s'</code>). If any of those parts is set, they take
+precedence over <a href="#staleness()"><code>staleness()</code></a>. A negative part fails fast when the
+annotated method is called.</div>
 </div>
 </section>
 <section class="summary">
@@ -90,10 +102,25 @@ low-latency, slightly-stale results.</div>
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Optional Element</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color"><code><a href="https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second even-row-color"><code><a href="#staleness()" class="member-name-link">staleness</a></code></div>
+<div class="col-first even-row-color"><code>long</code></div>
+<div class="col-second even-row-color"><code><a href="#hoursAgo()" class="member-name-link">hoursAgo</a></code></div>
 <div class="col-last even-row-color">
-<div class="block">Staleness expression.</div>
+<div class="block">Hours of staleness.</div>
+</div>
+<div class="col-first odd-row-color"><code>long</code></div>
+<div class="col-second odd-row-color"><code><a href="#minutesAgo()" class="member-name-link">minutesAgo</a></code></div>
+<div class="col-last odd-row-color">
+<div class="block">Minutes of staleness.</div>
+</div>
+<div class="col-first even-row-color"><code>long</code></div>
+<div class="col-second even-row-color"><code><a href="#secondsAgo()" class="member-name-link">secondsAgo</a></code></div>
+<div class="col-last even-row-color">
+<div class="block">Seconds of staleness.</div>
+</div>
+<div class="col-first odd-row-color"><code><a href="https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second odd-row-color"><code><a href="#staleness()" class="member-name-link">staleness</a></code></div>
+<div class="col-last odd-row-color">
+<div class="block">Raw staleness expression, inlined after <code>AS OF SYSTEM TIME</code>.</div>
 </div>
 </div>
 </section>
@@ -112,11 +139,52 @@ low-latency, slightly-stale results.</div>
 <h3>staleness</h3>
 <div class="horizontal-scroll">
 <div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">staleness</span></div>
-<div class="block">Staleness expression. Defaults to CockroachDB's exact-staleness helper
+<div class="block">Raw staleness expression, inlined after <code>AS OF SYSTEM TIME</code>. Used
+only when <code>hoursAgo</code>/<code>minutesAgo</code>/<code>secondsAgo</code> are all 0.
+Defaults to CockroachDB's exact-staleness helper
 <code>follower_read_timestamp()</code>.</div>
 <dl class="notes">
 <dt>Default:</dt>
 <dd><code>"follower_read_timestamp()"</code></dd>
+</dl>
+</div>
+</section>
+</li>
+<li>
+<section class="detail" id="hoursAgo()">
+<h3>hoursAgo</h3>
+<div class="horizontal-scroll">
+<div class="member-signature"><span class="return-type">long</span>&nbsp;<span class="element-name">hoursAgo</span></div>
+<div class="block">Hours of staleness. Added to <code>minutesAgo</code> and <code>secondsAgo</code>.</div>
+<dl class="notes">
+<dt>Default:</dt>
+<dd><code>0L</code></dd>
+</dl>
+</div>
+</section>
+</li>
+<li>
+<section class="detail" id="minutesAgo()">
+<h3>minutesAgo</h3>
+<div class="horizontal-scroll">
+<div class="member-signature"><span class="return-type">long</span>&nbsp;<span class="element-name">minutesAgo</span></div>
+<div class="block">Minutes of staleness. Added to <code>hoursAgo</code> and <code>secondsAgo</code>.</div>
+<dl class="notes">
+<dt>Default:</dt>
+<dd><code>0L</code></dd>
+</dl>
+</div>
+</section>
+</li>
+<li>
+<section class="detail" id="secondsAgo()">
+<h3>secondsAgo</h3>
+<div class="horizontal-scroll">
+<div class="member-signature"><span class="return-type">long</span>&nbsp;<span class="element-name">secondsAgo</span></div>
+<div class="block">Seconds of staleness. Added to <code>hoursAgo</code> and <code>minutesAgo</code>.</div>
+<dl class="notes">
+<dt>Default:</dt>
+<dd><code>0L</code></dd>
 </dl>
 </div>
 </section>

@@ -27,11 +27,11 @@
         {
           "name": "cockroachdb-java-library-core-0.1.1.jar",
           "url": "cockroachdb-java-library-core-0.1.1.jar",
-          "size": 56682,
-          "sha512": "1a9b607c076c9b3c8e0461a2bcb74b66c41589d26ba46fb980f5249d21e64afcd84dce429ce7afea72da9f1b82f227bd6573051538c956da05163bfd86ee0e7b",
-          "sha256": "6e6c1e761b0180449e579698bf422070e93b31a1fd08a917ce02229b1f4ce7df",
-          "sha1": "4f01fcaaec8b4ffede67959532a33427b03c7230",
-          "md5": "13d81d68bcb9f6180a21cb67093dce38"
+          "size": 57239,
+          "sha512": "4e06cd4395647974e164a4a390c9b4578659520f77b1e5b95ae0ee87611e98bbc4b3d55284a97c6d326a4d91ec08594d28e7fba1e7eba74f8667523178b80c3f",
+          "sha256": "72492171700504ed3c6f870778b848880d14ddf689cfc6acb6ac4a32ae4c9dc5",
+          "sha1": "6f2c26ad342491d4fb484912b7d221992d924a32",
+          "md5": "be9e3689ae3f2238651030682102ab59"
         }
       ]
     },
@@ -64,11 +64,11 @@
         {
           "name": "cockroachdb-java-library-core-0.1.1.jar",
           "url": "cockroachdb-java-library-core-0.1.1.jar",
-          "size": 56682,
-          "sha512": "1a9b607c076c9b3c8e0461a2bcb74b66c41589d26ba46fb980f5249d21e64afcd84dce429ce7afea72da9f1b82f227bd6573051538c956da05163bfd86ee0e7b",
-          "sha256": "6e6c1e761b0180449e579698bf422070e93b31a1fd08a917ce02229b1f4ce7df",
-          "sha1": "4f01fcaaec8b4ffede67959532a33427b03c7230",
-          "md5": "13d81d68bcb9f6180a21cb67093dce38"
+          "size": 57239,
+          "sha512": "4e06cd4395647974e164a4a390c9b4578659520f77b1e5b95ae0ee87611e98bbc4b3d55284a97c6d326a4d91ec08594d28e7fba1e7eba74f8667523178b80c3f",
+          "sha256": "72492171700504ed3c6f870778b848880d14ddf689cfc6acb6ac4a32ae4c9dc5",
+          "sha1": "6f2c26ad342491d4fb484912b7d221992d924a32",
+          "md5": "be9e3689ae3f2238651030682102ab59"
         }
       ]
     },
@@ -84,11 +84,11 @@
         {
           "name": "cockroachdb-java-library-core-0.1.1-javadoc.jar",
           "url": "cockroachdb-java-library-core-0.1.1-javadoc.jar",
-          "size": 4358040,
-          "sha512": "2dfc9795546ee1664671fdfa867376bf95ea2538e53223b2e9fa573cc6d19b50e6e717e6508ab898c25a7a4e46d223edeb7f9213ceb22be04774d2450b676353",
-          "sha256": "412bfe9ab628d647f6196fa19afd64fa08992acc4c356722a2c5e13b0a9079fa",
-          "sha1": "c9ceba34a0acf77d4072403c6c6050fb86b72852",
-          "md5": "a4c8debfa083c2e075af2c2502065317"
+          "size": 4358714,
+          "sha512": "bf06be137f958321e71c6d2f7849ef8d1f57e489097e39d8b459ce1c9f9fd0d674e88f6bc38a2f34f6fb5f656cb2e28ff478568da213ae75ad7c1a2171461a3e",
+          "sha256": "b76624fa505ded29359173cc76e3080d607c147a9f83090e6f8933aa07eea992",
+          "sha1": "d28c7a1166afe2c6e4b1dbdb344f1f9826b20093",
+          "md5": "c75111f1376f32bbd639195f4c58a673"
         }
       ]
     },
@@ -104,11 +104,11 @@
         {
           "name": "cockroachdb-java-library-core-0.1.1-sources.jar",
           "url": "cockroachdb-java-library-core-0.1.1-sources.jar",
-          "size": 40476,
-          "sha512": "2bfa44867e26ac7341d2d578b4e4134da8de81ca96102adbe628cfca37164ee412deaa7b8fbd51ecdca2790a4f39b4afee2b2e5d511f30dd68e1fa6eb1578395",
-          "sha256": "5ec6e6ba0d8fc6a253348e588351b2d13beede57b06b038117607b0de11e785b",
-          "sha1": "b6544c6067f2826d4603ab60fab7e486ba118050",
-          "md5": "eb6bf6c74f6634dd036d03e99dc006d0"
+          "size": 41398,
+          "sha512": "7b844fd27ffa16309f0c0a4dd61918b095912eebe8cc761af7d4019a7fbecfd8811b4a67a74475229e5c440c13cedd74428e68afb94ed79027b1344a1aa16ab3",
+          "sha256": "3822677263ceb11db5528d7173543773a3e1587e99593372441036ca395cd355",
+          "sha1": "4319203de71e0fb58132e0f976b494dd95c767ba",
+          "md5": "f570b73385926bf9384d4fe27e781a07"
         }
       ]
     }
