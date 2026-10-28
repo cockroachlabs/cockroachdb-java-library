@@ -104,8 +104,37 @@ final class CrdbDispatcher {
             values = values.withWorkload(workload.value());
         }
         if (follower != null) {
-            values = values.withFollowerReadStaleness(follower.staleness());
+            values = values.withFollowerReadStaleness(followerReadStaleness(follower));
         }
         return values;
+    }
+
+    /**
+     * Resolve the follower-read staleness value to inline after
+     * {@code AS OF SYSTEM TIME}. If any of {@code hoursAgo}/{@code minutesAgo}/
+     * {@code secondsAgo} is set, the parts add up and compose to {@code '-Ns'},
+     * taking precedence over {@link FollowerRead#staleness()}; otherwise the raw
+     * {@code staleness} expression is used. Fails fast on a negative part, so a
+     * follower read never silently degrades to a current read.
+     */
+    static String followerReadStaleness(FollowerRead follower) {
+        long hoursAgo = follower.hoursAgo();
+        long minutesAgo = follower.minutesAgo();
+        long secondsAgo = follower.secondsAgo();
+        if (hoursAgo < 0 || minutesAgo < 0 || secondsAgo < 0) {
+            throw new IllegalStateException("@FollowerRead(hoursAgo = " + hoursAgo
+                    + ", minutesAgo = " + minutesAgo + ", secondsAgo = " + secondsAgo
+                    + "): hoursAgo, minutesAgo and secondsAgo must not be negative");
+        }
+        if (hoursAgo == 0 && minutesAgo == 0 && secondsAgo == 0) {
+            return follower.staleness();
+        }
+        long totalSecondsAgo = Math.addExact(Math.addExact(
+                Math.multiplyExact(hoursAgo, 3600),
+                Math.multiplyExact(minutesAgo, 60)),
+                secondsAgo);
+        // AS OF SYSTEM TIME can't take a placeholder; the value is inlined, built
+        // only from the validated numbers above — never from user text.
+        return "'-" + totalSecondsAgo + "s'";
     }
 }

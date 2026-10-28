@@ -113,10 +113,61 @@ long balance = Crdb.tx(ds, c -> {
 | `@Transactional(retry, isolation)` | Run in a JDBC transaction (SERIALIZABLE by default); retry on serialization conflicts using `cockroach_restart` semantics |
 | `@CrdbRetry(maxRetries, baseDelayMillis, maxDelayMillis)` | Retry on serialization anomalies with adaptive backoff |
 | `@CircuitBreaker(failureThreshold, resetTimeoutMillis)` | Fast-fail after repeated failures |
-| `@FollowerRead(staleness)` | Read from the nearest replica with `AS OF SYSTEM TIME` |
+| `@FollowerRead(hoursAgo, minutesAgo, secondsAgo, staleness)` | Read from the nearest replica with `AS OF SYSTEM TIME` (see below) |
 | `@Region(value)` | Pin execution context to a region |
 | `@VirtualCluster(value)` / `@Workload(Priority)` | Cockroach vCluster tagging: `SET LOCAL application_name` + workload QoS on the transaction |
 | `@AgentTool(value, destructive)` | Expose a method as an agent-callable tool (see the `agent` module) |
+
+### Follower reads
+
+CockroachDB's [follower reads](https://www.cockroachlabs.com/docs/stable/follower-reads.html)
+let any replica serve reads at a slightly stale timestamp (about 4.2s old),
+avoiding the round-trip to the leaseholder. `@FollowerRead` binds the staleness
+into `CrdbContext`; the transaction then starts with
+`SET TRANSACTION AS OF SYSTEM TIME`, so every statement reads the same snapshot
+from the past. A plain `@FollowerRead` always does a follower read — it never
+silently falls back to a current read.
+
+```java
+public class CatalogServiceImpl implements CatalogService {
+    private final DataSource ds;
+    public CatalogServiceImpl(DataSource ds) { this.ds = ds; }
+
+    @FollowerRead                                 // follower_read_timestamp()
+    public List<Product> browseCatalog() {
+        return Crdb.tx(ds, c -> /* ... read products ... */);
+    }
+}
+
+CatalogService svc = Crdb.enhance((CatalogService) new CatalogServiceImpl(ds));
+```
+
+**Choosing how far back to read.** By default the read runs at
+`follower_read_timestamp()`. Use `hoursAgo`, `minutesAgo` and `secondsAgo` to
+read further back — they add up and compose to `AS OF SYSTEM TIME '-Ns'`:
+
+```java
+@FollowerRead(secondsAgo = 20)                    // AS OF SYSTEM TIME '-20s'
+@FollowerRead(minutesAgo = 5)                     // '-300s'
+@FollowerRead(hoursAgo = 1, minutesAgo = 30)      // 1h30m ago → '-5400s'
+```
+
+If any of `hoursAgo`/`minutesAgo`/`secondsAgo` is non-zero they take precedence
+over `staleness`; when all three are zero, the raw `staleness` expression is
+used (defaulting to `follower_read_timestamp()`). The interval is built only
+from the validated numbers, never from caller text.
+
+**Fails fast instead of reading current data.** A negative `hoursAgo`,
+`minutesAgo` or `secondsAgo` throws `IllegalStateException` before the method
+runs, naming the offending annotation — never a silent current read.
+
+> **Limitation (v1):** the core library emits `AS OF SYSTEM TIME` only when the
+> method actually runs inside a managed transaction — `Crdb.tx(...)`,
+> `Crdb.template(ds)`, or a `@Transactional` method. A bare `@FollowerRead`
+> method that opens no transaction binds the staleness but has nothing to apply
+> it to, so no follower read happens on the wire. Unlike the Spring starter,
+> which opens its own read-only `REQUIRES_NEW` transaction, the core does not
+> auto-open one. Pair `@FollowerRead` with a transaction.
 
 ## Cockroach Continuum
 
