@@ -1,0 +1,55 @@
+plugins {
+    id 'application'
+    id 'java'
+}
+
+group = 'com.cockroachlabs.ideas'
+version = '0.1.0'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(25)
+    }
+}
+
+application {
+    mainClass = 'com.cockroachlabs.ideas.Main'
+}
+
+// tag::repo-maven[]
+repositories {
+    mavenCentral()
+    // Anonymous, no-token CockroachDB Java library Maven feed (GitHub Pages).
+    maven {
+        name = 'cockroachdb-java-library'
+        url = 'https://cockroachlabs.github.io/cockroachdb-java-library/maven/'
+    }
+}
+// end::repo-maven[]
+
+// tag::deps[]
+dependencies {
+    // The pure-Java library core: Crdb.tx(...) retry entry point. Pinned 0.1.2.
+    implementation 'com.cockroachlabs:cockroachdb-java-library-core:0.1.2'
+
+    // A JDBC driver + DataSource for plain read-modify-write DAO code.
+    implementation 'org.postgresql:postgresql:42.7.14'
+
+    // Testing module: Testcontainers CockroachDB harness + concurrency runner.
+    // Declared as implementation (not test-only) so Main can drive the same
+    // ConcurrencyRunner the test uses; it stays available to the test too.
+    implementation 'com.cockroachlabs:cockroachdb-java-library-testing:0.1.2'
+
+    // JUnit 6 (matches the library's parent junitVersion 6.1.3).
+    testImplementation 'org.junit.jupiter:junit-jupiter:6.1.3'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+// end::deps[]
+
+tasks.named('test') {
+    useJUnitPlatform()
+    testLogging {
+        events 'passed', 'skipped', 'failed'
+        showStandardStreams = true
+    }
+}
