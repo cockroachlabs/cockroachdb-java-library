@@ -44,6 +44,7 @@ class IdeaMetricsIT {
             CrdbMetrics metrics = CrdbMetrics.inMemory().register();
             // end::metrics-config[]
             try {
+                // tag::metrics-it[]
                 // Each upvote is timed as one transaction; the inner Crdb.tx retries
                 // on 40001 are counted independently via the observe bus.
                 ConcurrencyRunner runner = new ConcurrencyRunner(WORKERS, ITERATIONS);
@@ -63,6 +64,7 @@ class IdeaMetricsIT {
                 assertTrue(snap.retryAttempts() > 0,
                         "contention on one row must force at least one 40001 retry, but retryAttempts="
                                 + snap.retryAttempts());
+                // end::metrics-it[]
             } finally {
                 metrics.unregister();
             }
