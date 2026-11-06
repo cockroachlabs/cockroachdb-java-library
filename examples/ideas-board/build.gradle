@@ -41,6 +41,10 @@ dependencies {
     // consuming CockroachDB changefeed webhook deliveries.
     implementation 'com.cockroachlabs:cockroachdb-java-library-cdc:0.1.2'
 
+    // AI module: VectorStore + VectorDocument + DistanceMetric over CockroachDB's
+    // native VECTOR type, for semantic / similarity search.
+    implementation 'com.cockroachlabs:cockroachdb-java-library-ai:0.1.2'
+
     // A JDBC driver + DataSource for plain read-modify-write DAO code.
     implementation 'org.postgresql:postgresql:42.7.14'
 
