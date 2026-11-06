@@ -29,8 +29,17 @@ repositories {
 
 // tag::deps[]
 dependencies {
-    // The pure-Java library core: Crdb.tx(...) retry entry point. Pinned 0.1.2.
+    // The pure-Java library core: Crdb.tx(...) retry entry point, @FollowerRead,
+    // Crdb.enhance(...). Pinned 0.1.2.
     implementation 'com.cockroachlabs:cockroachdb-java-library-core:0.1.2'
+
+    // Metrics module: CrdbMetrics facade + InMemoryMetricsRecorder, counting
+    // transactions and observe-bus retry events.
+    implementation 'com.cockroachlabs:cockroachdb-java-library-metrics:0.1.2'
+
+    // CDC module: CdcEventHandler, CdcEventDecoder, ChangefeedHandlerRegistry for
+    // consuming CockroachDB changefeed webhook deliveries.
+    implementation 'com.cockroachlabs:cockroachdb-java-library-cdc:0.1.2'
 
     // A JDBC driver + DataSource for plain read-modify-write DAO code.
     implementation 'org.postgresql:postgresql:42.7.14'
