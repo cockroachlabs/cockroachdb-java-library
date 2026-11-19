@@ -51,7 +51,13 @@ jobs:
       - name: Run multi-region integration test
         env:
           CRDB_MULTIREGION: "true"
-          CRDB_URL: "postgres://root@localhost:26257/defaultdb?sslmode=disable"
+          # RegionalIdeaIT feeds CRDB_URL straight to PGSimpleDataSource.setUrl(),
+          # which requires a JDBC URL (jdbc:postgresql://...) — the libpq-style
+          # postgres:// form the go example uses makes setUrl throw
+          # IllegalArgumentException. user=root is required because the JDBC driver
+          # otherwise defaults the user to the runner's OS account, which the
+          # insecure cluster does not have.
+          CRDB_URL: "jdbc:postgresql://localhost:26257/defaultdb?sslmode=disable&user=root"
         run: ./gradlew -p examples/ideas-board test --tests '*RegionalIdeaIT*' --no-daemon --stacktrace
 
       - name: Cluster diagnostics on failure

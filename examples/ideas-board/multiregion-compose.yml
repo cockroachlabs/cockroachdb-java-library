@@ -8,13 +8,15 @@
 # is added too (superset) to keep this compose a near-verbatim copy of the proven
 # go-library one; the Java test only asserts on us-east1 / us-west1.
 #
-# Only node1's SQL port is published to the host:
-#   CRDB_URL=postgres://root@localhost:26257/defaultdb?sslmode=disable
+# Only node1's SQL port is published to the host. RegionalIdeaIT reads a JDBC URL
+# (it calls PGSimpleDataSource.setUrl), so CRDB_URL must be the jdbc:postgresql form
+# with user=root (the insecure cluster has no account matching the host OS user):
+#   CRDB_URL=jdbc:postgresql://localhost:26257/defaultdb?sslmode=disable&user=root
 #
 # Local use:
 #   docker compose -f multiregion-compose.yml up -d crdb-us-east1 crdb-us-west1 crdb-us-central1
 #   docker compose -f multiregion-compose.yml run --rm crdb-init
-#   CRDB_MULTIREGION=true CRDB_URL=postgres://root@localhost:26257/defaultdb?sslmode=disable \
+#   CRDB_MULTIREGION=true CRDB_URL='jdbc:postgresql://localhost:26257/defaultdb?sslmode=disable&user=root' \
 #     ../../gradlew -p . test --tests '*RegionalIdeaIT*'
 #
 # Default on-disk stores (ephemeral in the container, wiped by `down -v`) + capped
