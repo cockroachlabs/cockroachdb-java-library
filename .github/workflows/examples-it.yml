@@ -1,0 +1,40 @@
+name: examples-it
+
+# Runs the Ideas Board example's integration tests on GitHub-hosted runners,
+# which ship with Docker — so Testcontainers spins up a real CockroachDB and the
+# tutorial's integration tests (the 40001 concurrency proof, follower reads,
+# metrics) actually execute. Multi-region (RegionalIdeaIT, gated behind
+# CRDB_MULTIREGION) and vector search (SemanticSearchIT, needs a v25.2+ image)
+# self-skip here; they get a multi-region cluster / v25.2 image in follow-up jobs.
+#
+# The example is a standalone Gradle build (not in the root settings.gradle) that
+# depends on the PUBLISHED 0.1.2 library from the Pages Maven feed, so it is run
+# with the root Gradle wrapper via -p and resolves the library over the network.
+on:
+  pull_request:
+    paths:
+      - 'examples/ideas-board/**'
+      - '.github/workflows/examples-it.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'examples/ideas-board/**'
+      - '.github/workflows/examples-it.yml'
+  workflow_dispatch:
+
+jobs:
+  ideas-board-it:
+    name: Ideas Board integration tests (Testcontainers)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up JDK 25 (Temurin)
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '25'
+          cache: gradle
+      - name: Integration tests (real CockroachDB via Testcontainers)
+        env:
+          TESTCONTAINERS_RYUK_DISABLED: "true"
+        run: ./gradlew -p examples/ideas-board test --no-daemon --stacktrace
