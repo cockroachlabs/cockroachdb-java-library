@@ -33,9 +33,9 @@ public final class IdeaService {
             // SERIALIZABLE is required for 40001 to surface on a read-modify-write.
             c.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
             try {
-                Idea idea = repo.findById(c, id);          // <1>
-                repo.updateVotes(c, id, idea.votes() + 1); // <2>
-                c.commit();                                // <3>
+                Idea idea = repo.findById(c, id);
+                repo.updateVotes(c, id, idea.votes() + 1);
+                c.commit();
             } catch (SQLException e) {
                 c.rollback();
                 throw new RuntimeException(e);
@@ -53,7 +53,7 @@ public final class IdeaService {
      * on a 40001 conflict, so every upvote eventually lands.
      */
     public void upvote(UUID id) {
-        Crdb.tx(ds, c -> {                             // <1>
+        Crdb.tx(ds, c -> {
             Idea idea = repo.findById(c, id);
             repo.updateVotes(c, id, idea.votes() + 1);
             return null;
