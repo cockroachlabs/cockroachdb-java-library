@@ -27,11 +27,11 @@
         {
           "name": "cockroachdb-java-library-core-0.1.2.jar",
           "url": "cockroachdb-java-library-core-0.1.2.jar",
-          "size": 57239,
-          "sha512": "4e06cd4395647974e164a4a390c9b4578659520f77b1e5b95ae0ee87611e98bbc4b3d55284a97c6d326a4d91ec08594d28e7fba1e7eba74f8667523178b80c3f",
-          "sha256": "72492171700504ed3c6f870778b848880d14ddf689cfc6acb6ac4a32ae4c9dc5",
-          "sha1": "6f2c26ad342491d4fb484912b7d221992d924a32",
-          "md5": "be9e3689ae3f2238651030682102ab59"
+          "size": 57189,
+          "sha512": "0c1c999016d45cdb69c499ba1c854ffa24dacb50c5d45dedfad760901cf31270138d3e45dddbcf748574ae0a02091d0946128e17d47247ed455228b49c0a8102",
+          "sha256": "643364174752a1ac27e8dc677e6d96cd60c27eae93013ef79c9bd5d5b59a0f98",
+          "sha1": "68d5e2d619210786def062c37e2309eeae809daa",
+          "md5": "9687656e41dad4b267a2d563eef0ea98"
         }
       ]
     },
@@ -64,11 +64,11 @@
         {
           "name": "cockroachdb-java-library-core-0.1.2.jar",
           "url": "cockroachdb-java-library-core-0.1.2.jar",
-          "size": 57239,
-          "sha512": "4e06cd4395647974e164a4a390c9b4578659520f77b1e5b95ae0ee87611e98bbc4b3d55284a97c6d326a4d91ec08594d28e7fba1e7eba74f8667523178b80c3f",
-          "sha256": "72492171700504ed3c6f870778b848880d14ddf689cfc6acb6ac4a32ae4c9dc5",
-          "sha1": "6f2c26ad342491d4fb484912b7d221992d924a32",
-          "md5": "be9e3689ae3f2238651030682102ab59"
+          "size": 57189,
+          "sha512": "0c1c999016d45cdb69c499ba1c854ffa24dacb50c5d45dedfad760901cf31270138d3e45dddbcf748574ae0a02091d0946128e17d47247ed455228b49c0a8102",
+          "sha256": "643364174752a1ac27e8dc677e6d96cd60c27eae93013ef79c9bd5d5b59a0f98",
+          "sha1": "68d5e2d619210786def062c37e2309eeae809daa",
+          "md5": "9687656e41dad4b267a2d563eef0ea98"
         }
       ]
     },
@@ -104,11 +104,11 @@
         {
           "name": "cockroachdb-java-library-core-0.1.2-sources.jar",
           "url": "cockroachdb-java-library-core-0.1.2-sources.jar",
-          "size": 41398,
-          "sha512": "7b844fd27ffa16309f0c0a4dd61918b095912eebe8cc761af7d4019a7fbecfd8811b4a67a74475229e5c440c13cedd74428e68afb94ed79027b1344a1aa16ab3",
-          "sha256": "3822677263ceb11db5528d7173543773a3e1587e99593372441036ca395cd355",
-          "sha1": "4319203de71e0fb58132e0f976b494dd95c767ba",
-          "md5": "f570b73385926bf9384d4fe27e781a07"
+          "size": 41798,
+          "sha512": "102cbd31650f35bab0f462fad08145f3cea249525a08cfe178ee17e3e7bdd9ee8ce63cf14db094861acc6a75235500f071e424a8043941f3cfa349d8fe5d2e79",
+          "sha256": "83669c89d86bf624856a6c0fc3f230d010bbf6f0c29f3674c01f6328431029b8",
+          "sha1": "4ae3794b2ffd24730ee693fdb26e0d441c959604",
+          "md5": "793e919f3bf3e6e5d4f7a10c288c5197"
         }
       ]
     }
