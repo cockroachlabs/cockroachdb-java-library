@@ -4,6 +4,25 @@ All notable changes to this project are documented here. The format is based on
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres
 to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.0] - 2026-11-21
+
+Checked exceptions thrown by a method annotated with `@FollowerRead`,
+`@VirtualCluster`, `@Region`, `@Workload`, `@CrdbRetry` or
+`@Transactional(retry = true)` now reach the caller as the **original instance**,
+honoring the method's `throws` contract.
+
+### Fixed
+- Annotated methods no longer wrap a thrown checked exception in a generic
+  `RuntimeException`. A method declared `throws IOException` now throws
+  `IOException` to its caller. Previously the original exception was wrapped and
+  its type was lost. (`CrdbContext.with`, `RetryEngine.run`, and the interface
+  proxy no longer re-wrap.)
+
+### Changed (behavior)
+- Code that caught the wrapping `RuntimeException` around an annotated call now
+  sees the original checked exception instead. `RuntimeException` and `Error`
+  continue to propagate unchanged.
+
 ## [0.1.2] - 2026-10-28
 
 `@FollowerRead` can now target a specific staleness, and rejects invalid values
