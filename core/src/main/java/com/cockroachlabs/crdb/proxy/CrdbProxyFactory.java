@@ -67,11 +67,12 @@ public final class CrdbProxyFactory {
         InvocationHandler handler = (proxy, method, args) -> {
             Method concrete = resolveConcrete(target.getClass(), method);
             OriginalCall original = () -> invokeReflectively(target, concrete, args);
-            try {
-                return dispatcher.dispatch(concrete, original);
-            } catch (Exception e) {
-                throw unwrapForCaller(e);
-            }
+            // Let the dispatched exception reach the caller unwrapped: a checked
+            // exception the proxied method declares propagates as its ORIGINAL
+            // instance (InvocationHandler.invoke is declared to throw Throwable),
+            // honoring the method's throws contract. RuntimeException/Error
+            // already pass through untouched.
+            return dispatcher.dispatch(concrete, original);
         };
         return Proxy.newProxyInstance(target.getClass().getClassLoader(), interfaces, handler);
     }
@@ -98,13 +99,6 @@ public final class CrdbProxyFactory {
         } catch (NoSuchMethodException e) {
             return interfaceMethod;
         }
-    }
-
-    private static RuntimeException unwrapForCaller(Exception e) {
-        if (e instanceof RuntimeException re) {
-            return re;
-        }
-        return new RuntimeException(e);
     }
 
     // ---- class (ByteBuddy subclass) strategy -----------------------------
