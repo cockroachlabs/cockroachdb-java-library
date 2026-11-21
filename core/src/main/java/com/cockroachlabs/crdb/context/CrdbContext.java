@@ -30,8 +30,16 @@ public final class CrdbContext {
         } catch (RuntimeException e) {
             throw e;
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            // Propagate a checked exception thrown by the body as its ORIGINAL
+            // instance (unwrapped), so an annotated method's throws contract is
+            // honored. Sneaky-throw keeps this method's signature unchanged.
+            throw sneakyThrow(e);
         }
+    }
+
+    @SuppressWarnings("unchecked")
+    private static <E extends Throwable> RuntimeException sneakyThrow(Throwable t) throws E {
+        throw (E) t;
     }
 
     /** The full context bound to the current scope, if any. */

@@ -63,8 +63,13 @@ public final class RetryEngine {
             } catch (Exception ex) {
                 SQLException sql = findSqlException(ex);
                 if (sql == null) {
-                    // Not a database anomaly: propagate faithfully.
-                    throw asRuntime(ex);
+                    // Not a database anomaly: propagate the ORIGINAL exception
+                    // faithfully and unwrapped — a checked exception keeps its
+                    // type and instance so the caller's throws contract holds.
+                    if (ex instanceof RuntimeException re) {
+                        throw re;
+                    }
+                    throw sneakyThrow(ex);
                 }
                 if (!AnomalyClassifier.isRetryable(sql)) {
                     throw new CrdbException(AnomalyClassifier.classify(sql));
@@ -119,10 +124,8 @@ public final class RetryEngine {
         return null;
     }
 
-    private static RuntimeException asRuntime(Exception ex) {
-        if (ex instanceof RuntimeException re) {
-            return re;
-        }
-        return new RuntimeException(ex);
+    @SuppressWarnings("unchecked")
+    private static <E extends Throwable> RuntimeException sneakyThrow(Throwable t) throws E {
+        throw (E) t;
     }
 }
