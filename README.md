@@ -52,7 +52,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.cockroachlabs:cockroachdb-java-library-core:0.1.1'
+    implementation 'com.cockroachlabs:cockroachdb-java-library-core:0.2.0'
 }
 ```
 
