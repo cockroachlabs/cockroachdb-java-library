@@ -39,7 +39,7 @@ Modules are served from this repository's **GitHub Pages Maven repository** — 
 <dependency>
   <groupId>com.cockroachlabs</groupId>
   <artifactId>cockroachdb-java-library-core</artifactId>
-  <version>0.1.1</version>
+  <version>0.2.0</version>
 </dependency>
 ```
 
