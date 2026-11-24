@@ -68,7 +68,7 @@ jobs:
           # otherwise defaults the user to the runner's OS account, which the
           # insecure cluster does not have.
           CRDB_URL: "jdbc:postgresql://localhost:26257/defaultdb?sslmode=disable&user=root"
-        run: ./gradlew -p examples/ideas-board test --tests '*RegionalIdeaIT*' --no-daemon --stacktrace
+        run: ./gradlew -p examples/ideas-board test --tests '*RegionalIdeaIT*' --tests '*RegionalLocalityCheckIT*' --no-daemon --stacktrace
 
       - name: Run core multi-region check integration test
         env:

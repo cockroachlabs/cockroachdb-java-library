@@ -1,11 +1,14 @@
 package com.cockroachlabs.ideas;
 
+import com.cockroachlabs.crdb.Crdb;
 import com.cockroachlabs.crdb.cdc.CdcEvent;
 import com.cockroachlabs.crdb.cdc.ChangefeedHandlerRegistry;
 import com.cockroachlabs.crdb.cdc.Operation;
 import com.cockroachlabs.crdb.metrics.CrdbMetrics;
 import com.cockroachlabs.crdb.metrics.InMemoryMetricsRecorder;
 import com.cockroachlabs.crdb.metrics.MetricsSnapshot;
+import com.cockroachlabs.crdb.multiregion.Mode;
+import com.cockroachlabs.crdb.multiregion.MultiregionReport;
 import com.cockroachlabs.crdb.testing.ConcurrencyResult;
 import com.cockroachlabs.crdb.testing.ConcurrencyRunner;
 import org.postgresql.ds.PGSimpleDataSource;
@@ -40,6 +43,7 @@ public final class Main {
         IdeaService service = new IdeaService(ds, repo);
 
         repo.createSchema();
+        verifyRegionalLayout(ds);
         Idea idea = repo.seed("Add dark mode to the ideas board");
         System.out.println("Seeded idea " + idea.id() + " — expecting " + EXPECTED + " upvotes\n");
 
@@ -78,6 +82,22 @@ public final class Main {
 
         demonstrateChangefeed();
     }
+
+    // tag::mr-check-usage[]
+    /**
+     * Startup locality check: confirm the live {@code regional_idea} table matches what
+     * {@link RegionalIdea}'s {@code @RegionalByRow}/{@code @CrdbRegion} annotations declare.
+     * {@code Mode.WARN} (the default) logs any mismatch with the exact fix-up SQL and returns
+     * the report without throwing — only a contradiction fails startup. Use {@code Mode.VALIDATE}
+     * to make any mismatch fatal.
+     */
+    private static void verifyRegionalLayout(DataSource ds) {
+        MultiregionReport report = Crdb.verifyLocality(ds, Mode.WARN, RegionalIdea.class);
+        System.out.println(report.isEmpty()
+                ? "locality check: regional_idea matches @RegionalByRow\n"
+                : report.format(Mode.WARN) + "\n");
+    }
+    // end::mr-check-usage[]
 
     // tag::cdc-register[]
     /**
