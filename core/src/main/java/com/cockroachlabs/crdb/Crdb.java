@@ -2,6 +2,9 @@ package com.cockroachlabs.crdb;
 
 import com.cockroachlabs.crdb.config.CrdbConfig;
 import com.cockroachlabs.crdb.context.CrdbContext;
+import com.cockroachlabs.crdb.multiregion.Mode;
+import com.cockroachlabs.crdb.multiregion.MultiregionCheck;
+import com.cockroachlabs.crdb.multiregion.MultiregionReport;
 import com.cockroachlabs.crdb.proxy.CrdbProxyFactory;
 import com.cockroachlabs.crdb.spi.AegisClient;
 import com.cockroachlabs.crdb.spi.AegisConfig;
@@ -68,6 +71,39 @@ public final class Crdb {
     /** A reusable {@link TransactionTemplate} bound to {@code ds}. */
     public static TransactionTemplate template(DataSource ds) {
         return new TransactionTemplate(ds);
+    }
+
+    // ---- multi-region locality check -------------------------------------
+
+    /**
+     * Check that {@code entities}' {@code @GlobalTable}/{@code @RegionalByRow}/{@code @CrdbRegion}
+     * annotations match the live schema of {@code ds}, in {@link Mode#WARN}: log any problems with
+     * fix-up SQL and return the {@link MultiregionReport}. A contradiction (the annotations and the
+     * schema disagree about where rows live) throws {@link IllegalStateException} even here.
+     *
+     * <p>This library has no ORM and no startup hook, so — unlike the Spring starter, which runs
+     * this automatically — you call it explicitly, e.g. once after your migrations have run. The
+     * check only reads; it never changes the schema. It skips quietly when {@code ds} is not
+     * CockroachDB. Table names are resolved from each class's simple name (override with the
+     * annotation's {@code table}); see
+     * {@link com.cockroachlabs.crdb.annotations.GlobalTable} for that rule and its limitation.
+     *
+     * @throws IllegalStateException on a contradiction
+     */
+    public static MultiregionReport verifyLocality(DataSource ds, Class<?>... entities) {
+        return MultiregionCheck.verify(ds, Mode.WARN, entities);
+    }
+
+    /**
+     * As {@link #verifyLocality(DataSource, Class[])} but with an explicit {@link Mode}:
+     * {@link Mode#NONE} is off, {@link Mode#WARN} logs (contradictions still throw), and
+     * {@link Mode#VALIDATE} throws {@link IllegalStateException} on any problem. The thrown
+     * exception's message is the report's {@link MultiregionReport#format(Mode)}.
+     *
+     * @throws IllegalStateException in validate mode on any problem, or on a contradiction in any mode but none
+     */
+    public static MultiregionReport verifyLocality(DataSource ds, Mode mode, Class<?>... entities) {
+        return MultiregionCheck.verify(ds, mode, entities);
     }
 
     // ---- Cockroach Continuum surface -------------------------------------

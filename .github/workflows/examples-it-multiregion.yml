@@ -16,11 +16,21 @@ on:
   pull_request:
     paths:
       - 'examples/ideas-board/**'
+      - 'core/src/main/java/com/cockroachlabs/crdb/multiregion/**'
+      - 'core/src/main/java/com/cockroachlabs/crdb/annotations/GlobalTable.java'
+      - 'core/src/main/java/com/cockroachlabs/crdb/annotations/RegionalByRow.java'
+      - 'core/src/main/java/com/cockroachlabs/crdb/annotations/CrdbRegion.java'
+      - 'core/src/test/java/com/cockroachlabs/crdb/multiregion/**'
       - '.github/workflows/examples-it-multiregion.yml'
   push:
     branches: [main]
     paths:
       - 'examples/ideas-board/**'
+      - 'core/src/main/java/com/cockroachlabs/crdb/multiregion/**'
+      - 'core/src/main/java/com/cockroachlabs/crdb/annotations/GlobalTable.java'
+      - 'core/src/main/java/com/cockroachlabs/crdb/annotations/RegionalByRow.java'
+      - 'core/src/main/java/com/cockroachlabs/crdb/annotations/CrdbRegion.java'
+      - 'core/src/test/java/com/cockroachlabs/crdb/multiregion/**'
       - '.github/workflows/examples-it-multiregion.yml'
   workflow_dispatch:
 
@@ -59,6 +69,16 @@ jobs:
           # insecure cluster does not have.
           CRDB_URL: "jdbc:postgresql://localhost:26257/defaultdb?sslmode=disable&user=root"
         run: ./gradlew -p examples/ideas-board test --tests '*RegionalIdeaIT*' --no-daemon --stacktrace
+
+      - name: Run core multi-region check integration test
+        env:
+          CRDB_MULTIREGION: "true"
+          # MultiregionCheckIT (in the root build's core module, so it uses the
+          # library built from source, not the published Pages artifact) seeds a
+          # GLOBAL and a REGIONAL BY ROW table in the already-multi-region
+          # defaultdb and verifies Crdb.verifyLocality against the live schema.
+          CRDB_URL: "jdbc:postgresql://localhost:26257/defaultdb?sslmode=disable&user=root"
+        run: ./gradlew :core:test --tests '*MultiregionCheckIT*' --no-daemon --stacktrace
 
       - name: Cluster diagnostics on failure
         if: failure()
