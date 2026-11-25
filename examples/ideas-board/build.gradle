@@ -30,20 +30,20 @@ repositories {
 // tag::deps[]
 dependencies {
     // The pure-Java library core: Crdb.tx(...) retry entry point, @FollowerRead,
-    // Crdb.enhance(...). Pinned 0.3.0.
-    implementation 'com.cockroachlabs:cockroachdb-java-library-core:0.3.0'
+    // Crdb.enhance(...). Pinned 0.4.0.
+    implementation 'com.cockroachlabs:cockroachdb-java-library-core:0.4.0'
 
     // Metrics module: CrdbMetrics facade + InMemoryMetricsRecorder, counting
     // transactions and observe-bus retry events.
-    implementation 'com.cockroachlabs:cockroachdb-java-library-metrics:0.3.0'
+    implementation 'com.cockroachlabs:cockroachdb-java-library-metrics:0.4.0'
 
     // CDC module: CdcEventHandler, CdcEventDecoder, ChangefeedHandlerRegistry for
     // consuming CockroachDB changefeed webhook deliveries.
-    implementation 'com.cockroachlabs:cockroachdb-java-library-cdc:0.3.0'
+    implementation 'com.cockroachlabs:cockroachdb-java-library-cdc:0.4.0'
 
     // AI module: VectorStore + VectorDocument + DistanceMetric over CockroachDB's
     // native VECTOR type, for semantic / similarity search.
-    implementation 'com.cockroachlabs:cockroachdb-java-library-ai:0.3.0'
+    implementation 'com.cockroachlabs:cockroachdb-java-library-ai:0.4.0'
 
     // A JDBC driver + DataSource for plain read-modify-write DAO code.
     implementation 'org.postgresql:postgresql:42.7.14'
@@ -51,7 +51,7 @@ dependencies {
     // Testing module: Testcontainers CockroachDB harness + concurrency runner.
     // Declared as implementation (not test-only) so Main can drive the same
     // ConcurrencyRunner the test uses; it stays available to the test too.
-    implementation 'com.cockroachlabs:cockroachdb-java-library-testing:0.3.0'
+    implementation 'com.cockroachlabs:cockroachdb-java-library-testing:0.4.0'
 
     // JUnit 6 (matches the library's parent junitVersion 6.1.3).
     testImplementation 'org.junit.jupiter:junit-jupiter:6.1.3'
