@@ -12,10 +12,12 @@ dependencies {
 }
 
 // Bake the consumer-facing agent guide into the published core jar at
-// META-INF/AGENTS.md so coding agents can discover it from the classpath.
+// META-INF/cockroachdb-java-library/AGENTS.md so coding agents can discover it
+// from the classpath. The namespaced path avoids collisions with other
+// libraries' META-INF/AGENTS.md when shaded into an uber/shaded jar.
 processResources {
     from(rootProject.file('docs/agents/AGENTS.md')) {
-        into 'META-INF'
+        into 'META-INF/cockroachdb-java-library'
     }
 }
 
