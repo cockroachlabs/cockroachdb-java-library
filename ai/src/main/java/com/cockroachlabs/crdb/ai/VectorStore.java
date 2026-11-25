@@ -15,6 +15,8 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.UUID;
 
+import org.jspecify.annotations.Nullable;
+
 /**
  * High-level document store backed by CockroachDB's native {@code VECTOR} type.
  *
@@ -95,7 +97,8 @@ public final class VectorStore {
         try (Connection c = dataSource.getConnection()) {
             c.setAutoCommit(false);
             for (VectorDocument doc : docs) {
-                float[] embedding = doc.embedding() != null ? doc.embedding() : embedder.embed(doc.content());
+                float[] provided = doc.embedding();
+                float[] embedding = provided != null ? provided : embedder.embed(doc.content());
                 String id = (doc.id() == null || doc.id().isBlank()) ? UUID.randomUUID().toString() : doc.id();
                 String rendered = String.format(sql, "'" + Vectors.toLiteral(embedding) + "'");
                 try (PreparedStatement ps = c.prepareStatement(rendered)) {
@@ -129,12 +132,12 @@ public final class VectorStore {
     }
 
     /** Similarity search with an optional SQL metadata filter (e.g. {@code metadata->>'lang' = 'en'}). */
-    public List<VectorSearchResult> similaritySearch(String queryText, int topK, String filter) {
+    public List<VectorSearchResult> similaritySearch(String queryText, int topK, @Nullable String filter) {
         return similaritySearch(embedder.embed(queryText), topK, filter);
     }
 
     /** Similarity search using a precomputed query vector and optional SQL filter. */
-    public List<VectorSearchResult> similaritySearch(float[] queryVector, int topK, String filter) {
+    public List<VectorSearchResult> similaritySearch(float[] queryVector, int topK, @Nullable String filter) {
         String op = config.distanceMetric().operator();
         String lit = "'" + Vectors.toLiteral(queryVector) + "'::vector";
         StringBuilder sql = new StringBuilder("SELECT ")

@@ -16,6 +16,8 @@ import com.cockroachlabs.crdb.retry.RetryPolicy;
 import java.lang.reflect.Method;
 import java.util.concurrent.ConcurrentHashMap;
 
+import org.jspecify.annotations.Nullable;
+
 /**
  * The behavior composed around each enhanced method call. Shared by both proxy
  * strategies (JDK {@link java.lang.reflect.Proxy} and ByteBuddy subclass).
@@ -48,9 +50,13 @@ final class CrdbDispatcher {
         }
 
         // Innermost: bind call context (region/vCluster/workload/follower-read).
-        java.util.concurrent.Callable<Object> withContext = hasContext
-                ? () -> CrdbContext.with(ctx, original::call)
-                : original::call;
+        java.util.concurrent.Callable<Object> withContext;
+        if (ctx != null) {
+            CrdbContextValues boundContext = ctx;
+            withContext = () -> CrdbContext.with(boundContext, original::call);
+        } else {
+            withContext = original::call;
+        }
 
         // Middle: retry (from @CrdbRetry or @Transactional(retry=true)).
         boolean doRetry = crdbRetry != null || (transactional != null && transactional.retry());
@@ -85,7 +91,7 @@ final class CrdbDispatcher {
                         cfg.failureThreshold(), cfg.resetTimeoutMillis()));
     }
 
-    private static CrdbContextValues contextOf(Method method) {
+    private static @Nullable CrdbContextValues contextOf(Method method) {
         Region region = method.getAnnotation(Region.class);
         VirtualCluster vc = method.getAnnotation(VirtualCluster.class);
         Workload workload = method.getAnnotation(Workload.class);

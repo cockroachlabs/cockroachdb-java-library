@@ -13,4 +13,7 @@
  *
  * <p>JSON (de)serialization uses Jackson, confined to this module.
  */
+@NullMarked
 package com.cockroachlabs.crdb.cdc;
+
+import org.jspecify.annotations.NullMarked;

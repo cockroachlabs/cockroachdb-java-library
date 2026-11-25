@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import org.jspecify.annotations.Nullable;
+
 /**
  * Creates and controls CockroachDB changefeed jobs over a {@link DataSource}.
  *
@@ -66,7 +68,7 @@ public final class ChangefeedManager {
     }
 
     /** The current status of a changefeed job (e.g. {@code running}, {@code paused}), or {@code null} if unknown. */
-    public String status(long jobId) {
+    public @Nullable String status(long jobId) {
         try (Connection c = dataSource.getConnection();
              Statement s = c.createStatement();
              ResultSet rs = s.executeQuery("SHOW CHANGEFEED JOB " + jobId)) {

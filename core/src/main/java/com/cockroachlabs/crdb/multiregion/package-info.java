@@ -7,4 +7,7 @@
  * returns a {@link com.cockroachlabs.crdb.multiregion.MultiregionReport} and reacts per
  * {@link com.cockroachlabs.crdb.multiregion.Mode}. Everything else in this package is internal.
  */
+@NullMarked
 package com.cockroachlabs.crdb.multiregion;
+
+import org.jspecify.annotations.NullMarked;

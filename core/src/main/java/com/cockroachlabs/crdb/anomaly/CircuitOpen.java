@@ -1,5 +1,7 @@
 package com.cockroachlabs.crdb.anomaly;
 
+import org.jspecify.annotations.Nullable;
+
 /**
  * Signals that a circuit breaker is OPEN and the call was rejected without being
  * attempted.
@@ -9,7 +11,7 @@ package com.cockroachlabs.crdb.anomaly;
 public record CircuitOpen(int openedFailures) implements CrdbAnomaly {
 
     @Override
-    public String sqlState() {
+    public @Nullable String sqlState() {
         return null;
     }
 

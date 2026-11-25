@@ -10,6 +10,8 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.StringJoiner;
 
+import org.jspecify.annotations.Nullable;
+
 /**
  * Reflects over provider objects and builds {@link ToolDescriptor}s from their
  * public {@code @AgentTool} methods.
@@ -49,7 +51,7 @@ public final class ToolRegistry {
     }
 
     /** Look up a tool by name, or {@code null}. */
-    public ToolDescriptor get(String name) {
+    public @Nullable ToolDescriptor get(String name) {
         return tools.get(name);
     }
 

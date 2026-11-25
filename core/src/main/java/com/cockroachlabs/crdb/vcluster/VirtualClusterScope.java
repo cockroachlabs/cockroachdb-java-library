@@ -10,6 +10,8 @@ import javax.sql.DataSource;
 import java.util.Optional;
 import java.util.concurrent.Callable;
 
+import org.jspecify.annotations.Nullable;
+
 /**
  * A context-scoped executor for a Cockroach vCluster. Binds the vCluster (and
  * optional workload priority) into {@link CrdbContext} for the duration of the
@@ -23,13 +25,13 @@ import java.util.concurrent.Callable;
 public final class VirtualClusterScope {
 
     private final String name;
-    private final Priority workload;
+    private final @Nullable Priority workload;
 
     public VirtualClusterScope(String name) {
         this(name, null);
     }
 
-    private VirtualClusterScope(String name, Priority workload) {
+    private VirtualClusterScope(String name, @Nullable Priority workload) {
         if (name == null || name.isBlank()) {
             throw new IllegalArgumentException("vCluster name must not be blank");
         }

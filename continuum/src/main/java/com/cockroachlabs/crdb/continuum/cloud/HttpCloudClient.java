@@ -2,6 +2,7 @@ package com.cockroachlabs.crdb.continuum.cloud;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.jspecify.annotations.Nullable;
 
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -29,7 +30,7 @@ public final class HttpCloudClient implements CloudClient {
 
     /** A pluggable HTTP transport: (method, url, headers, body) -> response. */
     public interface Transport {
-        Response send(String method, String url, Map<String, String> headers, String body);
+        Response send(String method, String url, Map<String, String> headers, @Nullable String body);
     }
 
     /** An HTTP response: status code and (text) body. */
@@ -40,14 +41,14 @@ public final class HttpCloudClient implements CloudClient {
     private final String apiKey;
     private final Transport transport;
 
-    public HttpCloudClient(Config config, Transport transport) {
+    public HttpCloudClient(Config config, @Nullable Transport transport) {
         String b = config.baseUrl();
         this.base = (b == null || b.isBlank()) ? DEFAULT_BASE_URL : b.replaceAll("/+$", "");
         this.apiKey = config.apiKey();
         this.transport = transport != null ? transport : jdkTransport();
     }
 
-    private Response doReq(String method, String path, Object body) {
+    private Response doReq(String method, String path, @Nullable Object body) {
         Map<String, String> headers = new HashMap<>();
         headers.put("Authorization", "Bearer " + apiKey);
         headers.put("Accept", "application/json");
@@ -120,7 +121,7 @@ public final class HttpCloudClient implements CloudClient {
 
     private static String txt(JsonNode n, String key) {
         JsonNode v = n.get(key);
-        return v == null || v.isNull() ? null : v.asText();
+        return v == null || v.isNull() ? "" : v.asText();
     }
 
     /** The default transport backed by the JDK {@link HttpClient}. */

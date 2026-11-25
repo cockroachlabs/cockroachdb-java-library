@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 
+import org.jspecify.annotations.Nullable;
+
 /**
  * Fluent builder for a CockroachDB {@code CREATE CHANGEFEED} statement.
  *
@@ -35,7 +37,7 @@ public final class ChangefeedBuilder {
 
     private final List<String> tables = new ArrayList<>();
     private final Map<String, String> options = new LinkedHashMap<>();
-    private String sink;
+    private @Nullable String sink;
 
     private ChangefeedBuilder() {
     }
@@ -135,7 +137,7 @@ public final class ChangefeedBuilder {
     }
 
     /** The configured sink URI. */
-    public String sink() {
+    public @Nullable String sink() {
         return sink;
     }
 

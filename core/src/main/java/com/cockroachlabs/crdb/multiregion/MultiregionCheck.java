@@ -28,6 +28,8 @@ import com.cockroachlabs.crdb.multiregion.MultiregionState.TableInfo;
 import com.cockroachlabs.crdb.multiregion.MultiregionState.TableName;
 import com.cockroachlabs.crdb.multiregion.MultiregionTable.Kind;
 
+import org.jspecify.annotations.Nullable;
+
 /**
  * Compares annotated entities with the live multi-region configuration of their database
  * and tables, and suggests SQL for every difference. It only reads; it never changes the
@@ -166,7 +168,7 @@ public final class MultiregionCheck {
      * otherwise the column of the first {@code @CrdbRegion} field (its field name, folded like an
      * unquoted identifier), otherwise {@code null} (the implicit {@code crdb_region} is assumed).
      */
-    private static String regionColumn(Class<?> type, RegionalByRow regionalByRow) {
+    private static @Nullable String regionColumn(Class<?> type, @Nullable RegionalByRow regionalByRow) {
         if (regionalByRow != null && !regionalByRow.regionColumn().isBlank()) {
             return Identifiers.parse(regionalByRow.regionColumn()).get(0);
         }
@@ -181,7 +183,7 @@ public final class MultiregionCheck {
     }
 
     /** Finds {@code annotation} on {@code type} or any superclass, so a subclass shares its parent's. */
-    private static <A extends Annotation> A find(Class<?> type, Class<A> annotation) {
+    private static <A extends Annotation> @Nullable A find(Class<?> type, Class<A> annotation) {
         for (Class<?> c = type; c != null && c != Object.class; c = c.getSuperclass()) {
             A found = c.getDeclaredAnnotation(annotation);
             if (found != null) {
@@ -359,7 +361,7 @@ public final class MultiregionCheck {
         return report;
     }
 
-    private static void global(MultiregionReport report, String qualified, TableInfo info,
+    private static void global(MultiregionReport report, String qualified, @Nullable TableInfo info,
                                MultiregionTable table, boolean multiregion) {
         if (info == null) {
             missing(report, qualified, "@GlobalTable", table);
@@ -381,7 +383,7 @@ public final class MultiregionCheck {
      * An entity without either annotation whose table is {@code GLOBAL} or {@code REGIONAL BY ROW}:
      * the code, not the schema, needs fixing.
      */
-    private static void unannotated(MultiregionReport report, String qualified, TableInfo info,
+    private static void unannotated(MultiregionReport report, String qualified, @Nullable TableInfo info,
                                     List<MultiregionTable> entities, boolean multiregion) {
         if (info == null || !multiregion) {
             return;
@@ -416,7 +418,7 @@ public final class MultiregionCheck {
     }
 
     private static void regionalByRow(MultiregionReport report, MultiregionState state, MultiregionTable table,
-                                      String qualified, TableInfo info, boolean multiregion) {
+                                      String qualified, @Nullable TableInfo info, boolean multiregion) {
         if (info == null) {
             missing(report, qualified, "@RegionalByRow", table);
             return;
@@ -465,7 +467,7 @@ public final class MultiregionCheck {
      * The region column of a {@code REGIONAL BY ROW} locality, or {@code null} for any other
      * locality.
      */
-    static String regionalByRowColumn(String locality) {
+    static @Nullable String regionalByRowColumn(@Nullable String locality) {
         if (locality == null || !locality.startsWith(REGIONAL_BY_ROW)) {
             return null;
         }

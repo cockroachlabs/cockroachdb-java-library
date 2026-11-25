@@ -1,5 +1,7 @@
 package com.cockroachlabs.crdb.spi;
 
+import org.jspecify.annotations.Nullable;
+
 /**
  * Configuration for the Cockroach Aegis client.
  *
@@ -8,7 +10,7 @@ package com.cockroachlabs.crdb.spi;
  *                 simulated in-memory backend
  * @param token    bearer token for the Aegis API (may be {@code null})
  */
-public record AegisConfig(boolean enabled, String endpoint, String token) {
+public record AegisConfig(boolean enabled, @Nullable String endpoint, @Nullable String token) {
 
     /** Disabled by default: selects the simulated backend, emits nothing remote. */
     public static AegisConfig defaults() {

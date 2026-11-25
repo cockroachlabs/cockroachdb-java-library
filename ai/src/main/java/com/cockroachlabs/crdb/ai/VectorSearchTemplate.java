@@ -16,6 +16,8 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.regex.Pattern;
 
+import org.jspecify.annotations.Nullable;
+
 /**
  * Low-level vector similarity search over an arbitrary CockroachDB table using
  * the native {@code VECTOR} operators. Unlike {@link VectorStore} it makes no
@@ -125,14 +127,14 @@ public final class VectorSearchTemplate {
         private final float[] queryVector;
         private final DistanceMetric metric;
         private final int limit;
-        private final String filter;
+        private final @Nullable String filter;
         private final int beamSize;
         private final List<String> columns;
 
         private SearchRequest(Builder b) {
-            this.table = b.table;
+            this.table = Objects.requireNonNull(b.table, "table");
             this.vectorColumn = b.vectorColumn;
-            this.queryVector = b.queryVector;
+            this.queryVector = Objects.requireNonNull(b.queryVector, "queryVector");
             this.metric = b.metric;
             this.limit = b.limit;
             this.filter = b.filter;
@@ -160,12 +162,12 @@ public final class VectorSearchTemplate {
 
         /** Builder for {@link SearchRequest}. */
         public static final class Builder {
-            private String table;
+            private @Nullable String table;
             private String vectorColumn = "embedding";
-            private float[] queryVector;
+            private float @Nullable [] queryVector;
             private DistanceMetric metric = DistanceMetric.COSINE;
             private int limit = 10;
-            private String filter;
+            private @Nullable String filter;
             private int beamSize;
             private List<String> columns = List.of();
 

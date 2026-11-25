@@ -10,4 +10,7 @@
  * and {@link com.cockroachlabs.crdb.testing.SimulatedRetryException} exercise the
  * core retry path deterministically without a live database.
  */
+@NullMarked
 package com.cockroachlabs.crdb.testing;
+
+import org.jspecify.annotations.NullMarked;

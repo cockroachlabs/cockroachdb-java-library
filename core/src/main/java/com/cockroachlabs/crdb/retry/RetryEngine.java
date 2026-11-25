@@ -9,6 +9,8 @@ import java.sql.SQLException;
 import java.util.concurrent.Callable;
 import java.util.function.DoubleSupplier;
 
+import org.jspecify.annotations.Nullable;
+
 /**
  * Executes a unit of work, retrying on retryable CockroachDB anomalies with
  * {@link AdaptiveBackoff}. When attempts are exhausted it throws
@@ -25,11 +27,11 @@ public final class RetryEngine {
         void sleep(long millis) throws InterruptedException;
     }
 
-    private final DoubleSupplier jitterSource;
+    private final @Nullable DoubleSupplier jitterSource;
     private final Sleeper sleeper;
 
-    private AdaptiveBackoff backoff;
-    private RetryPolicy backoffPolicy;
+    private @Nullable AdaptiveBackoff backoff;
+    private @Nullable RetryPolicy backoffPolicy;
 
     public RetryEngine() {
         this(null, Thread::sleep);
@@ -39,7 +41,7 @@ public final class RetryEngine {
      * @param jitterSource optional deterministic jitter source (may be {@code null})
      * @param sleeper      how to wait between attempts (inject a no-op in tests)
      */
-    public RetryEngine(DoubleSupplier jitterSource, Sleeper sleeper) {
+    public RetryEngine(@Nullable DoubleSupplier jitterSource, Sleeper sleeper) {
         this.jitterSource = jitterSource;
         this.sleeper = sleeper;
     }
@@ -112,7 +114,7 @@ public final class RetryEngine {
         }
     }
 
-    private static SQLException findSqlException(Throwable t) {
+    private static @Nullable SQLException findSqlException(Throwable t) {
         for (Throwable c = t; c != null; c = c.getCause()) {
             if (c instanceof SQLException sql) {
                 return sql;

@@ -7,4 +7,7 @@
  * {@code try/catch} around serialization conflicts, retries, and circuit
  * breaking simply disappears.
  */
+@NullMarked
 package com.cockroachlabs.crdb.annotations;
+
+import org.jspecify.annotations.NullMarked;

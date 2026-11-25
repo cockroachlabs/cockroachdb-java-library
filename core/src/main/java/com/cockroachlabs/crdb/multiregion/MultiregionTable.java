@@ -1,5 +1,7 @@
 package com.cockroachlabs.crdb.multiregion;
 
+import org.jspecify.annotations.Nullable;
+
 /**
  * The table of an entity, and what its {@code @GlobalTable} or {@code @RegionalByRow}
  * annotation, if any, expects of it. Names are as CockroachDB stores them: unquoted names
@@ -11,7 +13,8 @@ package com.cockroachlabs.crdb.multiregion;
  * @param kind what the annotations expect; {@link Kind#NONE} for an entity with neither
  * @param regionColumn the column of the entity's {@code @CrdbRegion} field, or {@code null}
  */
-record MultiregionTable(String entity, String schema, String table, Kind kind, String regionColumn) {
+record MultiregionTable(String entity, @Nullable String schema, String table, Kind kind,
+                        @Nullable String regionColumn) {
 
     enum Kind {
         NONE, GLOBAL, REGIONAL_BY_ROW, BOTH

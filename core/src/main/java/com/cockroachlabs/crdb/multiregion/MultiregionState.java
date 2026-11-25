@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.jspecify.annotations.Nullable;
+
 /**
  * What the multi-region check reads from CockroachDB.
  *
@@ -14,7 +16,7 @@ import java.util.Set;
  * @param tables the tables the check looks at that exist, by schema and name
  * @param keywords keywords that must be quoted when used as an identifier
  */
-record MultiregionState(String database, String currentSchema, String primaryRegion,
+record MultiregionState(String database, String currentSchema, @Nullable String primaryRegion,
                         List<String> clusterRegions, Map<TableName, TableInfo> tables,
                         Set<String> keywords) {
 
@@ -26,6 +28,6 @@ record MultiregionState(String database, String currentSchema, String primaryReg
      * @param columnTypes the table's column types ({@code information_schema.columns.crdb_sql_type}),
      *                    read only for the columns the check needs
      */
-    record TableInfo(String locality, Map<String, String> columnTypes) {
+    record TableInfo(@Nullable String locality, Map<String, String> columnTypes) {
     }
 }

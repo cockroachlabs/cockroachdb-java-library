@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.function.Consumer;
 
+import org.jspecify.annotations.Nullable;
+
 /**
  * Receives CockroachDB changefeed webhook POSTs, parses the envelope, and
  * dispatches decoded events to a {@link ChangefeedHandlerRegistry}. Resolved
@@ -35,7 +37,7 @@ public final class ChangefeedWebhookHandler implements HttpHandler {
     private final ChangefeedHandlerRegistry registry;
     private final CdcEventDecoder decoder;
     private long maxBodyBytes = DEFAULT_MAX_BODY_BYTES;
-    private Consumer<String> onResolved;
+    private @Nullable Consumer<String> onResolved;
 
     public ChangefeedWebhookHandler(ChangefeedHandlerRegistry registry) {
         this(registry, new CdcEventDecoder());
@@ -68,8 +70,9 @@ public final class ChangefeedWebhookHandler implements HttpHandler {
     public int handleBody(String body) {
         CdcEnvelope envelope = decoder.decode(body);
         if (envelope.isResolved()) {
-            if (onResolved != null) {
-                onResolved.accept(envelope.resolved());
+            Consumer<String> cb = onResolved;
+            if (cb != null) {
+                cb.accept(envelope.resolved());
             }
             return 0;
         }
@@ -98,7 +101,7 @@ public final class ChangefeedWebhookHandler implements HttpHandler {
         }
     }
 
-    private String readBody(HttpExchange exchange) throws IOException {
+    private @Nullable String readBody(HttpExchange exchange) throws IOException {
         try (InputStream in = exchange.getRequestBody()) {
             byte[] data = in.readNBytes((int) Math.min(maxBodyBytes, Integer.MAX_VALUE));
             // If more bytes remain, the body exceeded the limit.

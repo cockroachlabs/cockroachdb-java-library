@@ -13,4 +13,7 @@
  * {@code observe} event bus so retries and circuit trips are counted
  * automatically.
  */
+@NullMarked
 package com.cockroachlabs.crdb.metrics;
+
+import org.jspecify.annotations.NullMarked;

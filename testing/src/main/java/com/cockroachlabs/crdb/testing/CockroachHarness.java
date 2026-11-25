@@ -1,5 +1,6 @@
 package com.cockroachlabs.crdb.testing;
 
+import org.jspecify.annotations.Nullable;
 import org.postgresql.ds.PGSimpleDataSource;
 import org.testcontainers.containers.CockroachContainer;
 import org.testcontainers.utility.DockerImageName;
@@ -30,10 +31,10 @@ public final class CockroachHarness implements AutoCloseable {
     /** A reasonable default image tag for the container backend. */
     public static final String DEFAULT_IMAGE = "cockroachdb/cockroach:v24.1.5";
 
-    private final CockroachContainer container; // null in external mode
-    private String jdbcUrl;                      // set in external mode, or after start()
+    private final @Nullable CockroachContainer container; // null in external mode
+    private @Nullable String jdbcUrl;                      // set in external mode, or after start()
 
-    private CockroachHarness(CockroachContainer container, String jdbcUrl) {
+    private CockroachHarness(@Nullable CockroachContainer container, @Nullable String jdbcUrl) {
         this.container = container;
         this.jdbcUrl = jdbcUrl;
     }

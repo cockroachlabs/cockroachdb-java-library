@@ -5,6 +5,8 @@ import com.cockroachlabs.crdb.observe.CrdbEvents;
 import com.cockroachlabs.crdb.spi.AegisClient;
 import com.cockroachlabs.crdb.spi.AppEvent;
 
+import org.jspecify.annotations.Nullable;
+
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.function.LongSupplier;
@@ -64,7 +66,8 @@ public final class AegisExhaust implements CrdbEventListener, AutoCloseable {
                 attrs(operation, "consecutiveFailures", consecutiveFailures, null, null), clock.getAsLong()));
     }
 
-    private static Map<String, Object> attrs(String operation, String k1, Object v1, String k2, Object v2) {
+    private static Map<String, Object> attrs(String operation, String k1, Object v1,
+                                             @Nullable String k2, @Nullable Object v2) {
         Map<String, Object> m = new LinkedHashMap<>();
         m.put("operation", nz(operation));
         m.put(k1, v1);
