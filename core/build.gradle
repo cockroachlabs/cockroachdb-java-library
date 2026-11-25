@@ -11,5 +11,13 @@ dependencies {
     implementation "net.bytebuddy:byte-buddy:${rootProject.ext.byteBuddyVersion}"
 }
 
+// Bake the consumer-facing agent guide into the published core jar at
+// META-INF/AGENTS.md so coding agents can discover it from the classpath.
+processResources {
+    from(rootProject.file('docs/agents/AGENTS.md')) {
+        into 'META-INF'
+    }
+}
+
 // Maven publishing (GitHub Packages) is configured centrally in the root
 // build.gradle `subprojects` block for every module.

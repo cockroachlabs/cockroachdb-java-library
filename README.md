@@ -39,7 +39,7 @@ Modules are served from this repository's **GitHub Pages Maven repository** — 
 <dependency>
   <groupId>com.cockroachlabs</groupId>
   <artifactId>cockroachdb-java-library-core</artifactId>
-  <version>0.4.0</version>
+  <version>0.4.1</version>
 </dependency>
 ```
 
@@ -52,11 +52,15 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.cockroachlabs:cockroachdb-java-library-core:0.4.0'
+    implementation 'com.cockroachlabs:cockroachdb-java-library-core:0.4.1'
 }
 ```
 
 API reference: https://cockroachlabs.github.io/cockroachdb-java-library/
+
+> **AI agents:** a consumer guide for coding agents lives at
+> [`docs/agents/AGENTS.md`](docs/agents/AGENTS.md) and is bundled in the published
+> `core` jar at `META-INF/AGENTS.md`.
 
 ## Quick start
 
