@@ -3,6 +3,8 @@ package com.cockroachlabs.crdb.ai;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import org.jspecify.annotations.Nullable;
+
 /**
  * Minimal JSON support for flat {@code Map<String,String>} metadata, so the AI
  * module stays dependency-free (no Jackson). Values are always written as JSON
@@ -117,7 +119,7 @@ final class Json {
             }
         }
 
-        private String parseValue() {
+        private @Nullable String parseValue() {
             char c = peek();
             if (c == '"') {
                 return parseString();

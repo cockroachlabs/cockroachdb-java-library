@@ -12,6 +12,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.jspecify.annotations.Nullable;
+
 /**
  * A built-in provider of safe, read-only {@code @AgentTool}s: health, retry
  * statistics, and (when a {@link DataSource} is supplied) a Cockroach Plenum
@@ -19,13 +21,13 @@ import java.util.Map;
  */
 public final class CrdbOpsTools {
 
-    private final DataSource dataSource;
+    private final @Nullable DataSource dataSource;
 
     public CrdbOpsTools() {
         this(null);
     }
 
-    public CrdbOpsTools(DataSource dataSource) {
+    public CrdbOpsTools(@Nullable DataSource dataSource) {
         this.dataSource = dataSource;
     }
 

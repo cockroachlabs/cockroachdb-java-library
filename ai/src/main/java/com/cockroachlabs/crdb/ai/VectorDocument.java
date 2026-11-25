@@ -2,6 +2,8 @@ package com.cockroachlabs.crdb.ai;
 
 import java.util.Map;
 
+import org.jspecify.annotations.Nullable;
+
 /**
  * A document to store in a {@link VectorStore}.
  *
@@ -14,7 +16,7 @@ import java.util.Map;
 public record VectorDocument(
         String id,
         String content,
-        float[] embedding,
+        float @Nullable [] embedding,
         Map<String, String> metadata) {
 
     /** A document whose embedding will be generated on insert. */

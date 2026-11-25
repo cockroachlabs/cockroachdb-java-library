@@ -1,5 +1,7 @@
 package com.cockroachlabs.crdb.anomaly;
 
+import org.jspecify.annotations.Nullable;
+
 /**
  * Signals that the retry engine gave up after exhausting all attempts.
  *
@@ -9,13 +11,12 @@ package com.cockroachlabs.crdb.anomaly;
 public record RetryExhausted(int attempts, CrdbAnomaly last) implements CrdbAnomaly {
 
     @Override
-    public String sqlState() {
-        return last == null ? null : last.sqlState();
+    public @Nullable String sqlState() {
+        return last.sqlState();
     }
 
     @Override
     public String message() {
-        return "Retry exhausted after " + attempts + " attempt(s)"
-                + (last == null ? "" : "; last: " + last.message());
+        return "Retry exhausted after " + attempts + " attempt(s); last: " + last.message();
     }
 }

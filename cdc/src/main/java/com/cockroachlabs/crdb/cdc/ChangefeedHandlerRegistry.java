@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+import org.jspecify.annotations.Nullable;
+
 /**
  * Routes decoded {@link CdcEvent}s to per-table {@link CdcEventHandler}s.
  *
@@ -17,7 +19,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public final class ChangefeedHandlerRegistry {
 
     private final Map<String, CdcEventHandler> byTable = new ConcurrentHashMap<>();
-    private volatile CdcEventHandler defaultHandler;
+    private volatile @Nullable CdcEventHandler defaultHandler;
 
     /** Register (or replace) the handler for a table. */
     public ChangefeedHandlerRegistry register(String table, CdcEventHandler handler) {
@@ -58,7 +60,10 @@ public final class ChangefeedHandlerRegistry {
         }
         int dispatched = 0;
         for (Map.Entry<String, List<CdcEvent>> entry : grouped.entrySet()) {
-            CdcEventHandler handler = byTable.getOrDefault(entry.getKey(), defaultHandler);
+            CdcEventHandler handler = byTable.get(entry.getKey());
+            if (handler == null) {
+                handler = defaultHandler;
+            }
             if (handler != null) {
                 handler.handle(entry.getValue());
                 dispatched++;

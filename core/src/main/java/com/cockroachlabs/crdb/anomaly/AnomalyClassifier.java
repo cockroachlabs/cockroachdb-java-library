@@ -27,7 +27,8 @@ public final class AnomalyClassifier {
     /** Classify a {@link SQLException} into a typed {@link CrdbAnomaly}. */
     public static CrdbAnomaly classify(SQLException e) {
         String state = e.getSQLState();
-        String msg = e.getMessage();
+        String raw = e.getMessage();
+        String msg = raw != null ? raw : "";
         if (state == null) {
             return new UnknownAnomaly(null, msg, e);
         }

@@ -4,4 +4,7 @@
  * {@code ThreadLocal} — so it propagates correctly across structured concurrency
  * and virtual threads.
  */
+@NullMarked
 package com.cockroachlabs.crdb.context;
+
+import org.jspecify.annotations.NullMarked;

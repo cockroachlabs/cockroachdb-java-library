@@ -11,6 +11,8 @@ import java.lang.reflect.Parameter;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.jspecify.annotations.Nullable;
+
 /**
  * A minimal, dependency-light MCP-style facade over {@code @AgentTool} methods.
  *
@@ -63,7 +65,7 @@ public final class CrdbAgent {
     }
 
     /** A visible tool by name, or {@code null}. */
-    public ToolDescriptor tool(String name) {
+    public @Nullable ToolDescriptor tool(String name) {
         ToolDescriptor t = registry.get(name);
         return (t != null && isVisible(t)) ? t : null;
     }
@@ -93,16 +95,18 @@ public final class CrdbAgent {
             throw new IllegalArgumentException("Unknown or not permitted tool: " + name);
         }
         try {
-            Object[] args = bindArgs(tool.method(), argsJson);
+            @Nullable Object[] args = bindArgs(tool.method(), argsJson);
             Object result = tool.method().invoke(tool.target(), args);
             return toolResult(result, false);
         } catch (InvocationTargetException e) {
             Throwable cause = e.getCause() == null ? e : e.getCause();
-            return toolResult(cause.getMessage(), true);
+            String msg = cause.getMessage();
+            return toolResult(msg != null ? msg : cause.toString(), true);
         } catch (IllegalArgumentException e) {
             throw e;
         } catch (Exception e) {
-            return toolResult(e.getMessage(), true);
+            String msg = e.getMessage();
+            return toolResult(msg != null ? msg : e.toString(), true);
         }
     }
 
@@ -110,7 +114,7 @@ public final class CrdbAgent {
         return !t.destructive() || allowDestructive;
     }
 
-    private Object[] bindArgs(Method method, String argsJson) {
+    private @Nullable Object[] bindArgs(Method method, String argsJson) {
         JsonNode root;
         try {
             root = (argsJson == null || argsJson.isBlank())
@@ -120,7 +124,7 @@ public final class CrdbAgent {
             throw new IllegalArgumentException("Invalid JSON arguments: " + e.getMessage(), e);
         }
         Parameter[] params = method.getParameters();
-        Object[] args = new Object[params.length];
+        @Nullable Object[] args = new Object[params.length];
         for (int i = 0; i < params.length; i++) {
             Parameter p = params[i];
             JsonNode node = root.get(p.getName());

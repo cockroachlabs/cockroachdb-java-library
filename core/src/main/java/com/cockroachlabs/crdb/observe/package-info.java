@@ -6,4 +6,7 @@
  * <p>This is the seam the Cockroach Aegis exhaust (in the {@code continuum}
  * module) attaches to, with no hard dependency when Aegis is disabled.
  */
+@NullMarked
 package com.cockroachlabs.crdb.observe;
+
+import org.jspecify.annotations.NullMarked;

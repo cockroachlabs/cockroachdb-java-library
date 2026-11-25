@@ -1,5 +1,6 @@
 plugins {
     id 'java-library'
+    id 'net.ltgt.errorprone' version '5.2.0' apply false
 }
 
 // ---------------------------------------------------------------------------
@@ -14,7 +15,7 @@ ext {
 
 allprojects {
     group = 'com.cockroachlabs'
-    version = '0.3.0'
+    version = '0.4.0'
 
     repositories {
         mavenCentral()
@@ -24,6 +25,7 @@ allprojects {
 subprojects {
     apply plugin: 'java-library'
     apply plugin: 'maven-publish'
+    apply plugin: 'net.ltgt.errorprone'
 
     java {
         toolchain {
@@ -34,8 +36,29 @@ subprojects {
     }
 
     dependencies {
+        // Null safety, the way Spring Framework does it: every package is JSpecify
+        // @NullMarked, carried as an api dependency so consumers see the contract.
+        api 'org.jspecify:jspecify:1.0.0'
+
+        errorprone 'com.google.errorprone:error_prone_core:2.52.0'
+        errorprone 'com.uber.nullaway:nullaway:0.14.3'
+
         testImplementation "org.junit.jupiter:junit-jupiter:${rootProject.ext.junitVersion}"
         testRuntimeOnly   "org.junit.platform:junit-platform-launcher"
+    }
+
+    // NullAway (run through Error Prone) checks main sources at compile time;
+    // tests are not checked. JSpecify mode honors @NullMarked / @Nullable.
+    tasks.named('compileJava', JavaCompile) {
+        options.errorprone {
+            disableAllChecks = true
+            option('NullAway:AnnotatedPackages', 'com.cockroachlabs')
+            option('NullAway:JSpecifyMode', 'true')
+            error('NullAway')
+        }
+    }
+    tasks.named('compileTestJava', JavaCompile) {
+        options.errorprone.enabled = false
     }
 
     test {
@@ -43,6 +66,20 @@ subprojects {
         testLogging {
             events 'passed', 'skipped', 'failed'
             exceptionFormat 'short'
+        }
+    }
+
+    // The null-safety conventions test lives in core and checks every module's
+    // packages, so give core's test task the whole library on a classpath
+    // property (the same mechanism Spring uses, aggregated across modules).
+    if (project.name == 'core') {
+        def nullSafetyClasspath = rootProject.files({
+            rootProject.subprojects.collect { it.sourceSets.main.output + it.sourceSets.main.compileClasspath }
+        })
+        test {
+            dependsOn rootProject.subprojects.collect { "${it.path}:classes" }
+            inputs.files(nullSafetyClasspath).withPropertyName('nullSafetyClasspath').withNormalizer(ClasspathNormalizer)
+            jvmArgumentProviders.add({ ["-DnullSafety.classpath=${nullSafetyClasspath.asPath}".toString()] } as CommandLineArgumentProvider)
         }
     }
 

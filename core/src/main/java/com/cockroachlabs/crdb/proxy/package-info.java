@@ -8,4 +8,7 @@
  * context around the original method — using a JDK {@link java.lang.reflect.Proxy}
  * when the target implements an interface, or a ByteBuddy subclass otherwise.
  */
+@NullMarked
 package com.cockroachlabs.crdb.proxy;
+
+import org.jspecify.annotations.NullMarked;

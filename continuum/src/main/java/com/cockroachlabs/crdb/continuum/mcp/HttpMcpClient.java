@@ -2,6 +2,7 @@ package com.cockroachlabs.crdb.continuum.mcp;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.jspecify.annotations.Nullable;
 
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -48,14 +49,14 @@ public final class HttpMcpClient implements McpClient {
     private final String clientVersion;
     private final Transport transport;
     private final AtomicLong ids = new AtomicLong();
-    private String sessionId;
+    private @Nullable String sessionId;
     private boolean init;
 
-    public HttpMcpClient(Config config, Transport transport) {
+    public HttpMcpClient(Config config, @Nullable Transport transport) {
         this(config, transport, "cockroachdb-java-library", "0.1");
     }
 
-    public HttpMcpClient(Config config, Transport transport, String clientName, String clientVersion) {
+    public HttpMcpClient(Config config, @Nullable Transport transport, String clientName, String clientVersion) {
         this.endpoint = config.endpoint();
         this.token = config.token();
         this.clientName = clientName;
@@ -138,7 +139,7 @@ public final class HttpMcpClient implements McpClient {
         post(payload);
     }
 
-    private String post(Map<String, Object> payload) {
+    private @Nullable String post(Map<String, Object> payload) {
         Map<String, String> headers = new HashMap<>();
         headers.put("Content-Type", "application/json");
         headers.put("Accept", "application/json, text/event-stream");
@@ -200,7 +201,7 @@ public final class HttpMcpClient implements McpClient {
         return out.toString();
     }
 
-    private static String headerValue(Map<String, String> headers, String name) {
+    private static @Nullable String headerValue(Map<String, String> headers, String name) {
         for (Map.Entry<String, String> e : headers.entrySet()) {
             if (e.getKey().equalsIgnoreCase(name)) {
                 return e.getValue();

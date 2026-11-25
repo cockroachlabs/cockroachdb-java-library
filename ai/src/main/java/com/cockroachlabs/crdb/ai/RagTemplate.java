@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import org.jspecify.annotations.Nullable;
+
 /**
  * A minimal Retrieval-Augmented Generation helper: retrieve the most similar
  * documents from a {@link VectorStore}, then hand their content to a
@@ -30,7 +32,7 @@ public final class RagTemplate {
     }
 
     /** Retrieve with an optional SQL metadata filter. */
-    public List<VectorSearchResult> retrieve(String question, int topK, String filter) {
+    public List<VectorSearchResult> retrieve(String question, int topK, @Nullable String filter) {
         return store.similaritySearch(question, topK, filter);
     }
 
@@ -40,7 +42,7 @@ public final class RagTemplate {
     }
 
     /** Retrieve context (optionally filtered) and generate a grounded answer. */
-    public String answer(String question, int topK, String filter) {
+    public String answer(String question, int topK, @Nullable String filter) {
         List<VectorSearchResult> hits = retrieve(question, topK, filter);
         List<String> context = new ArrayList<>(hits.size());
         for (VectorSearchResult hit : hits) {

@@ -11,4 +11,7 @@
  * vCluster tagging is applied by the core transaction template from context set
  * via {@code @VirtualCluster}/{@code @Workload} or {@code Crdb.vcluster(...)}.
  */
+@NullMarked
 package com.cockroachlabs.crdb.continuum;
+
+import org.jspecify.annotations.NullMarked;

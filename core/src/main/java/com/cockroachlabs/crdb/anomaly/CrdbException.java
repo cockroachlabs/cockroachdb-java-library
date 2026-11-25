@@ -1,5 +1,7 @@
 package com.cockroachlabs.crdb.anomaly;
 
+import org.jspecify.annotations.Nullable;
+
 /**
  * Unchecked, typed failure that wraps a {@link CrdbAnomaly}. Callers get a
  * single exception type with an {@link #anomaly()} accessor and can branch
@@ -31,8 +33,7 @@ public final class CrdbException extends RuntimeException {
             case ConnectionAnomaly ca ->
                     "CONNECTION[" + ca.sqlState() + "]: " + ca.message();
             case RetryExhausted re ->
-                    "RETRY_EXHAUSTED after " + re.attempts() + " attempt(s)"
-                            + (re.last() == null ? "" : " -> " + describe(re.last()));
+                    "RETRY_EXHAUSTED after " + re.attempts() + " attempt(s) -> " + describe(re.last());
             case CircuitOpen co ->
                     "CIRCUIT_OPEN: " + co.message();
             case UnknownAnomaly ua ->
@@ -40,12 +41,12 @@ public final class CrdbException extends RuntimeException {
         };
     }
 
-    private static Throwable causeOf(CrdbAnomaly anomaly) {
+    private static @Nullable Throwable causeOf(CrdbAnomaly anomaly) {
         return switch (anomaly) {
             case SerializationConflict sc -> sc.cause();
             case ConnectionAnomaly ca -> ca.cause();
             case UnknownAnomaly ua -> ua.cause();
-            case RetryExhausted re -> re.last() == null ? null : causeOf(re.last());
+            case RetryExhausted re -> causeOf(re.last());
             case CircuitOpen ignored -> null;
         };
     }

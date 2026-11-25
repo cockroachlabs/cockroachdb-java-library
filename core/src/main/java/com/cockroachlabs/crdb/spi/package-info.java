@@ -8,4 +8,7 @@
  * lets callers use {@code Crdb.storage(...)} / {@code Crdb.aegis(...)} without a
  * compile-time dependency on the implementation.
  */
+@NullMarked
 package com.cockroachlabs.crdb.spi;
+
+import org.jspecify.annotations.NullMarked;

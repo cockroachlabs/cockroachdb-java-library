@@ -2,6 +2,8 @@ package com.cockroachlabs.crdb.context;
 
 import com.cockroachlabs.crdb.annotations.Workload.Priority;
 
+import org.jspecify.annotations.Nullable;
+
 /**
  * Immutable bundle of CockroachDB call context. Any field may be {@code null}
  * meaning "unset".
@@ -12,10 +14,10 @@ import com.cockroachlabs.crdb.annotations.Workload.Priority;
  * @param followerReadStaleness the follower-read staleness expression, if any
  */
 public record CrdbContextValues(
-        String region,
-        String virtualCluster,
-        Priority workload,
-        String followerReadStaleness) {
+        @Nullable String region,
+        @Nullable String virtualCluster,
+        @Nullable Priority workload,
+        @Nullable String followerReadStaleness) {
 
     private static final CrdbContextValues EMPTY =
             new CrdbContextValues(null, null, null, null);
@@ -25,19 +27,19 @@ public record CrdbContextValues(
         return EMPTY;
     }
 
-    public CrdbContextValues withRegion(String r) {
+    public CrdbContextValues withRegion(@Nullable String r) {
         return new CrdbContextValues(r, virtualCluster, workload, followerReadStaleness);
     }
 
-    public CrdbContextValues withVirtualCluster(String vc) {
+    public CrdbContextValues withVirtualCluster(@Nullable String vc) {
         return new CrdbContextValues(region, vc, workload, followerReadStaleness);
     }
 
-    public CrdbContextValues withWorkload(Priority p) {
+    public CrdbContextValues withWorkload(@Nullable Priority p) {
         return new CrdbContextValues(region, virtualCluster, p, followerReadStaleness);
     }
 
-    public CrdbContextValues withFollowerReadStaleness(String s) {
+    public CrdbContextValues withFollowerReadStaleness(@Nullable String s) {
         return new CrdbContextValues(region, virtualCluster, workload, s);
     }
 
@@ -46,7 +48,7 @@ public record CrdbContextValues(
      * wins, otherwise this value is retained. Lets nested scopes refine parent
      * context without wiping it.
      */
-    public CrdbContextValues merge(CrdbContextValues other) {
+    public CrdbContextValues merge(@Nullable CrdbContextValues other) {
         if (other == null) {
             return this;
         }

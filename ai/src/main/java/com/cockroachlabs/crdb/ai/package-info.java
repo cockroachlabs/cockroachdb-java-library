@@ -14,4 +14,7 @@
  * {@link com.cockroachlabs.crdb.ai.RagTemplate} combines retrieval with a
  * pluggable {@link com.cockroachlabs.crdb.ai.ChatModel} for RAG.
  */
+@NullMarked
 package com.cockroachlabs.crdb.ai;
+
+import org.jspecify.annotations.NullMarked;

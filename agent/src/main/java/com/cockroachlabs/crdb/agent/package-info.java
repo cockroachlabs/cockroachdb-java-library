@@ -10,4 +10,7 @@
  * {@link com.cockroachlabs.crdb.agent.CrdbOpsTools} ships a few safe built-in
  * tools.
  */
+@NullMarked
 package com.cockroachlabs.crdb.agent;
+
+import org.jspecify.annotations.NullMarked;
