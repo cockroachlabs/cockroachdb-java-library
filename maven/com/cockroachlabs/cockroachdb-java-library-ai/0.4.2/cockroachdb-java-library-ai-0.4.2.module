@@ -1,0 +1,132 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.cockroachlabs",
+    "module": "cockroachdb-java-library-ai",
+    "version": "0.4.2",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.8.0"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 25,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "org.jspecify",
+          "module": "jspecify",
+          "version": {
+            "requires": "1.0.0"
+          }
+        },
+        {
+          "group": "com.cockroachlabs",
+          "module": "cockroachdb-java-library-core",
+          "version": {
+            "requires": "0.4.2"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "cockroachdb-java-library-ai-0.4.2.jar",
+          "url": "cockroachdb-java-library-ai-0.4.2.jar",
+          "size": 28364,
+          "sha512": "09594705042b8db2b8d5eb47cdf51acc5423a144dc4a2d447258859ff62f2f7a8865bc558d4b2c4ee6eb48cf662ebaa70db8fad3138c64490aec39f875f28f9c",
+          "sha256": "b90d027b9a2cbb6397ad7a03e95751a69f0ee2153cafbfeb75aa39b5b844c387",
+          "sha1": "90af07d66e6f92692e1fbf68393dadf0041150f6",
+          "md5": "998eb1d8eb0a27bab710c8e570da3253"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 25,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "org.jspecify",
+          "module": "jspecify",
+          "version": {
+            "requires": "1.0.0"
+          }
+        },
+        {
+          "group": "com.cockroachlabs",
+          "module": "cockroachdb-java-library-core",
+          "version": {
+            "requires": "0.4.2"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "cockroachdb-java-library-ai-0.4.2.jar",
+          "url": "cockroachdb-java-library-ai-0.4.2.jar",
+          "size": 28364,
+          "sha512": "09594705042b8db2b8d5eb47cdf51acc5423a144dc4a2d447258859ff62f2f7a8865bc558d4b2c4ee6eb48cf662ebaa70db8fad3138c64490aec39f875f28f9c",
+          "sha256": "b90d027b9a2cbb6397ad7a03e95751a69f0ee2153cafbfeb75aa39b5b844c387",
+          "sha1": "90af07d66e6f92692e1fbf68393dadf0041150f6",
+          "md5": "998eb1d8eb0a27bab710c8e570da3253"
+        }
+      ]
+    },
+    {
+      "name": "javadocElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "javadoc",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "cockroachdb-java-library-ai-0.4.2-javadoc.jar",
+          "url": "cockroachdb-java-library-ai-0.4.2-javadoc.jar",
+          "size": 4202865,
+          "sha512": "3aea845403d5130f256ccbf877d5538a2ecb7d59189ee7c5d83c18802b99fcb7cf938f37c138ef5943277e38af2c483344a395f4b80b5e2706af09ea1ea5475e",
+          "sha256": "c7d7d1b4d3b89d60b63e30259a7ba0d9f2e61180a196e688add5eed258c47b04",
+          "sha1": "1610fbbc090bceb62fbd6ae7684ba35892b9cc29",
+          "md5": "f358fa2b1d719ceadbbf8823260ea0b8"
+        }
+      ]
+    },
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "cockroachdb-java-library-ai-0.4.2-sources.jar",
+          "url": "cockroachdb-java-library-ai-0.4.2-sources.jar",
+          "size": 16018,
+          "sha512": "15b4faa1505834b61be06fc38d9f1883f5141848e55fb35d7d7424656f8fb4ce6664c8f97f2289fcd18751966f21aae29dcbb9ca47f6b44a5e12d0dda12a238a",
+          "sha256": "f9b6ca943f63eeb314d41b61b9a471c2d18b561555aa686da4f317ac6b01a656",
+          "sha1": "f8a342e91f8b8ce7df8e4cf8a9945fdf906e5397",
+          "md5": "ea0cc8ba28c4fec18be8d0d2d1c8edbf"
+        }
+      ]
+    }
+  ]
+}

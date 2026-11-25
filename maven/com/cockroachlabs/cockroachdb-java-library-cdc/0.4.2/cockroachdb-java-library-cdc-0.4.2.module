@@ -1,0 +1,139 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.cockroachlabs",
+    "module": "cockroachdb-java-library-cdc",
+    "version": "0.4.2",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.8.0"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 25,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "org.jspecify",
+          "module": "jspecify",
+          "version": {
+            "requires": "1.0.0"
+          }
+        },
+        {
+          "group": "com.cockroachlabs",
+          "module": "cockroachdb-java-library-core",
+          "version": {
+            "requires": "0.4.2"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "cockroachdb-java-library-cdc-0.4.2.jar",
+          "url": "cockroachdb-java-library-cdc-0.4.2.jar",
+          "size": 18585,
+          "sha512": "5b61e1c3cf08f70ae8bf97a931a66196c6cb1d2aec34747861fb36daefd9eb5656d1fb9c33a8661d920eb8832546376cf619d6ba36f9ad4a9e920c1faa5a0998",
+          "sha256": "bf366ade275d9893b04e9661ad2954ce95ec2b719a0287275872a1ad9c74f401",
+          "sha1": "3747b51ec666d627ffd06e7b6c3fabce22b3ef30",
+          "md5": "5f0c5ba81d72bbca7430f7d50f748145"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 25,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "com.fasterxml.jackson.core",
+          "module": "jackson-databind",
+          "version": {
+            "requires": "2.22.4"
+          }
+        },
+        {
+          "group": "org.jspecify",
+          "module": "jspecify",
+          "version": {
+            "requires": "1.0.0"
+          }
+        },
+        {
+          "group": "com.cockroachlabs",
+          "module": "cockroachdb-java-library-core",
+          "version": {
+            "requires": "0.4.2"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "cockroachdb-java-library-cdc-0.4.2.jar",
+          "url": "cockroachdb-java-library-cdc-0.4.2.jar",
+          "size": 18585,
+          "sha512": "5b61e1c3cf08f70ae8bf97a931a66196c6cb1d2aec34747861fb36daefd9eb5656d1fb9c33a8661d920eb8832546376cf619d6ba36f9ad4a9e920c1faa5a0998",
+          "sha256": "bf366ade275d9893b04e9661ad2954ce95ec2b719a0287275872a1ad9c74f401",
+          "sha1": "3747b51ec666d627ffd06e7b6c3fabce22b3ef30",
+          "md5": "5f0c5ba81d72bbca7430f7d50f748145"
+        }
+      ]
+    },
+    {
+      "name": "javadocElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "javadoc",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "cockroachdb-java-library-cdc-0.4.2-javadoc.jar",
+          "url": "cockroachdb-java-library-cdc-0.4.2-javadoc.jar",
+          "size": 4194793,
+          "sha512": "9872c8120fcaab1e3dbb185d5c0b451dff703062130b61e47187ff071e3e22f66ebd814d900acb11fda50de51cf45ebe768ef41d9127a4c801fff390c51f6de8",
+          "sha256": "c48cde52fbc9bd4c1d2990e81df61b89d6b0d276baaa9998ff4f1e7e0b755fcc",
+          "sha1": "a64e4454fc22689821a7b166d269de8ae74ea35e",
+          "md5": "43486827d1148fbc0fbde184db273726"
+        }
+      ]
+    },
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "cockroachdb-java-library-cdc-0.4.2-sources.jar",
+          "url": "cockroachdb-java-library-cdc-0.4.2-sources.jar",
+          "size": 11858,
+          "sha512": "fd0d4dbda56848fa6220e1e5caca8893a1ca814b3322e6c86b74499b508a4d3efef21aa4f7db9c37fb91a7ab9bfefd33acd4888011c80535dac07294dbb93bae",
+          "sha256": "bc2428a0753e639d8e8c45e5c5ead310445624dbd7136cafce30f2e9a700b616",
+          "sha1": "c26a8157c881933ac1e97750fbecef714d15d3f2",
+          "md5": "f344dda50a3d442f663ca614e00b51ad"
+        }
+      ]
+    }
+  ]
+}

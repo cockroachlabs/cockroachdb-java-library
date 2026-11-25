@@ -1,0 +1,139 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.cockroachlabs",
+    "module": "cockroachdb-java-library-continuum",
+    "version": "0.4.2",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.8.0"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 25,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "org.jspecify",
+          "module": "jspecify",
+          "version": {
+            "requires": "1.0.0"
+          }
+        },
+        {
+          "group": "com.cockroachlabs",
+          "module": "cockroachdb-java-library-core",
+          "version": {
+            "requires": "0.4.2"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "cockroachdb-java-library-continuum-0.4.2.jar",
+          "url": "cockroachdb-java-library-continuum-0.4.2.jar",
+          "size": 54463,
+          "sha512": "238f1e0606e6b288929a31de6382c409761fd3b895775e49f206089c011e5304c2109c17c6919b80ba9025d3b931fe40db798323347b3c18ef5f97b0df8dfed9",
+          "sha256": "989388eda83a2324acf82542db8242c13dcaec0b5288926420c1d8bef895fab2",
+          "sha1": "71aefe08c02b1c8e6523680b07b8869e068a9182",
+          "md5": "77a9cb54702e6d61517ac406573ea563"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 25,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "com.fasterxml.jackson.core",
+          "module": "jackson-databind",
+          "version": {
+            "requires": "2.18.2"
+          }
+        },
+        {
+          "group": "org.jspecify",
+          "module": "jspecify",
+          "version": {
+            "requires": "1.0.0"
+          }
+        },
+        {
+          "group": "com.cockroachlabs",
+          "module": "cockroachdb-java-library-core",
+          "version": {
+            "requires": "0.4.2"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "cockroachdb-java-library-continuum-0.4.2.jar",
+          "url": "cockroachdb-java-library-continuum-0.4.2.jar",
+          "size": 54463,
+          "sha512": "238f1e0606e6b288929a31de6382c409761fd3b895775e49f206089c011e5304c2109c17c6919b80ba9025d3b931fe40db798323347b3c18ef5f97b0df8dfed9",
+          "sha256": "989388eda83a2324acf82542db8242c13dcaec0b5288926420c1d8bef895fab2",
+          "sha1": "71aefe08c02b1c8e6523680b07b8869e068a9182",
+          "md5": "77a9cb54702e6d61517ac406573ea563"
+        }
+      ]
+    },
+    {
+      "name": "javadocElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "javadoc",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "cockroachdb-java-library-continuum-0.4.2-javadoc.jar",
+          "url": "cockroachdb-java-library-continuum-0.4.2-javadoc.jar",
+          "size": 4284846,
+          "sha512": "360bb5425d4d5494b6898b7ff4791b305015e296f6f119915106ca44b5cea17481e8c552658e097a1fc28f49cd230b2044ffa1f67f72283cfc07e89dfb1ef338",
+          "sha256": "ba96444de697db7f1d4f2a1cb36a37d12c25ca13c12732b0aef0dded8d25472e",
+          "sha1": "d0bd779692d5290116aa86b8dda930788a38c928",
+          "md5": "cb5572342755d1d0dfdde6672898fd9b"
+        }
+      ]
+    },
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "cockroachdb-java-library-continuum-0.4.2-sources.jar",
+          "url": "cockroachdb-java-library-continuum-0.4.2-sources.jar",
+          "size": 24603,
+          "sha512": "4dcd7ff96ff310fe890ef24c1054271226633a897d56bf505194ad0b08fb751679c95eac4c2c91d228e86ae254140adf0affcdb360112e7ecfd0492d831b000c",
+          "sha256": "a01feb51b1be9f5a1dbcaffd0ac1c5bd005f1cde3d4cea23ac0ae95fd0b53e67",
+          "sha1": "1d6bb63cdecb49d1774e9597366fcafa98192912",
+          "md5": "fd9e0ac05ddda6e31b7aa3d7d1d1d9c0"
+        }
+      ]
+    }
+  ]
+}

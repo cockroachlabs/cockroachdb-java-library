@@ -1,0 +1,9 @@
+# CockroachDB Java Library
+
+> The framework-free Java client for CockroachDB: automatic retries of serialization errors (SQLSTATE 40001), multi-region homing (@RegionalByRow / @GlobalTable), follower reads, CDC webhook handling, metrics and Continuum.
+
+## Docs
+
+- [Guide for coding agents](https://cockroachlabs.github.io/cockroachdb-java-library/agents/AGENTS.md): what the library already handles, which API to use for each job, configuration and anti-patterns
+- [README](https://github.com/cockroachlabs/cockroachdb-java-library/blob/main/README.md): full user reference
+- [API reference (Javadoc)](https://cockroachlabs.github.io/cockroachdb-java-library/)

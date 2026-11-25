@@ -1,0 +1,132 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.cockroachlabs",
+    "module": "cockroachdb-java-library-core",
+    "version": "0.4.2",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.8.0"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 25,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "org.jspecify",
+          "module": "jspecify",
+          "version": {
+            "requires": "1.0.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "cockroachdb-java-library-core-0.4.2.jar",
+          "url": "cockroachdb-java-library-core-0.4.2.jar",
+          "size": 89659,
+          "sha512": "f6da25ab16fc0c70e72714c86ced2d40959d78a6dc64d9d3a34a6438800b7afdd7f46af8d0586ae6392c262cbd44da0222578435fa5d39790f76424abbd76c66",
+          "sha256": "254588484a19ab2a8b20341c507a50177160b0dc8def7f9624569b56fb75d511",
+          "sha1": "6b9cb9d949799164cfb4017d572d8f33558a3796",
+          "md5": "3033348be55f0f26dd43247fef0a822a"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 25,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "org.postgresql",
+          "module": "postgresql",
+          "version": {
+            "requires": "42.7.14"
+          }
+        },
+        {
+          "group": "net.bytebuddy",
+          "module": "byte-buddy",
+          "version": {
+            "requires": "1.18.15"
+          }
+        },
+        {
+          "group": "org.jspecify",
+          "module": "jspecify",
+          "version": {
+            "requires": "1.0.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "cockroachdb-java-library-core-0.4.2.jar",
+          "url": "cockroachdb-java-library-core-0.4.2.jar",
+          "size": 89659,
+          "sha512": "f6da25ab16fc0c70e72714c86ced2d40959d78a6dc64d9d3a34a6438800b7afdd7f46af8d0586ae6392c262cbd44da0222578435fa5d39790f76424abbd76c66",
+          "sha256": "254588484a19ab2a8b20341c507a50177160b0dc8def7f9624569b56fb75d511",
+          "sha1": "6b9cb9d949799164cfb4017d572d8f33558a3796",
+          "md5": "3033348be55f0f26dd43247fef0a822a"
+        }
+      ]
+    },
+    {
+      "name": "javadocElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "javadoc",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "cockroachdb-java-library-core-0.4.2-javadoc.jar",
+          "url": "cockroachdb-java-library-core-0.4.2-javadoc.jar",
+          "size": 4385948,
+          "sha512": "b634a899ffbf5fa4a3288bd8689ea5a62f848e999b2bf8a3f592003051d55d7bdc36594e3b862ba62c39541bbdbf76ec88314bc0cbef573e1e563d5b24d61b3f",
+          "sha256": "fe43831b00c42837f47c128c6a3d040bf5048e5b519609b3acfb9ce1154ba11d",
+          "sha1": "a5fbc12ea361f3db7d3ca9012d1af6e6c7f1706b",
+          "md5": "8dde43adcfb8217762ae5255ccfe3191"
+        }
+      ]
+    },
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "cockroachdb-java-library-core-0.4.2-sources.jar",
+          "url": "cockroachdb-java-library-core-0.4.2-sources.jar",
+          "size": 57394,
+          "sha512": "98cadfe730a483c4782500c2cea86ddf27f7fbfab732feffd45f3a440811a1efd3f0d9d38d74d2fd1cf9848cfcb2191cc513735440492e2fa8eb0325bfff9114",
+          "sha256": "7066e6a9461af5f0d851b6517e6ccaab33b079737abea559aea51fabb7730b13",
+          "sha1": "a90784f4c691121b4a905cda12abc819216d7651",
+          "md5": "e35643da91cda05bd5d3e286eba31311"
+        }
+      ]
+    }
+  ]
+}
