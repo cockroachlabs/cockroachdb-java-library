@@ -44,6 +44,21 @@ jobs:
           # Anonymous static Maven repo (no token needed to consume).
           mkdir -p _site/maven
           cp -r build/maven-repo/. _site/maven/
+          # Guide for coding agents in consuming applications, plus an llms.txt pointing to it.
+          mkdir -p _site/agents
+          cp docs/agents/AGENTS.md _site/agents/AGENTS.md
+          SITE_URL="https://cockroachlabs.github.io/cockroachdb-java-library"
+          cat > _site/llms.txt <<LLMS
+          # CockroachDB Java Library
+
+          > The framework-free Java client for CockroachDB: automatic retries of serialization errors (SQLSTATE 40001), multi-region homing (@RegionalByRow / @GlobalTable), follower reads, CDC webhook handling, metrics and Continuum.
+
+          ## Docs
+
+          - [Guide for coding agents](${SITE_URL}/agents/AGENTS.md): what the library already handles, which API to use for each job, configuration and anti-patterns
+          - [README](https://github.com/cockroachlabs/cockroachdb-java-library/blob/main/README.md): full user reference
+          - [API reference (Javadoc)](${SITE_URL}/)
+          LLMS
           VER=$(grep -E "^[[:space:]]*version[[:space:]]*=[[:space:]]*'" build.gradle | head -1 | sed -E "s/.*'([^']+)'.*/\1/")
           REPO_URL="https://github.com/${GITHUB_REPOSITORY}"
 
